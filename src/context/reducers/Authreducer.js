@@ -13,6 +13,12 @@ export const initialAuthState = {
           user: action.payload,
           isLoggedIn: true,
         };
+        case "REGISTER":
+          return {
+            ...state,
+            user: action.payload,
+            isLoggedIn: true,
+          };
       case "LOGOUT":
         return {
           ...state,
@@ -20,7 +26,7 @@ export const initialAuthState = {
           user: null,
           ustate: action.payload
         };
-      case "ADMIN_LOADED":
+      case "USER_LOADED":
         return {
           ...state,
           isLoggedIn: true,
