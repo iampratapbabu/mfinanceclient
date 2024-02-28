@@ -22,8 +22,8 @@ const Header = () => {
     return (
         <>
             <header>
-                <h2>TejTech</h2>
-                <Link to='/'><img src={""} />TejTech</Link>
+                <h2>Header</h2>
+                <Link to='/'><img src={""} />Brandlogo header</Link>
                 <nav>
                     
                 </nav>

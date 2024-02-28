@@ -3,34 +3,36 @@ import './App.css';
 import AuthLayout from './layout/AuthLayout'
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import UserLayout from './layout/UserLayout';
 import UserProfile from './pages/user/UserProfile';
+import NotFound from './pages/NotFound';
+import HomePage from './pages/HomePage';
 
 const App = () => {
 
-  const isLoggedIn = true;
+  const isLoggedIn = false;
 
   return (
     <>
-      <div className="App">
-        <p>TejTech</p>
-      </div>
       <Routes>
         {
           isLoggedIn ? (
             <>
               <Route path="/" element={<UserLayout />}>
-                <Route path="/profile" element={<UserProfile />} />
-                <Route path="/home" element={<Login />} />
+              <Route path="home" element={<HomePage />} />
+                <Route path="profile" element={<UserProfile />} />
               </Route>
+              <Route path='*' element={<NotFound />} />
             </>
           ) : (
             <>
-              <Route element={<AuthLayout />}>
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/login" element={<Login />} />
+              <Route path="/" element={<AuthLayout />}>
+                <Route path="signup" element={<Signup />} />
+                <Route path="login" element={<Login />} />
               </Route>
+
+              <Route path="*" element={<Navigate to="/login" replace={true} />} />
             </>
           )
         }
