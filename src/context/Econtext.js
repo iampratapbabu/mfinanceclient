@@ -18,7 +18,7 @@ export const Eprovider = (props) => {
     const [jobState, jobDispatch] = useReducer(jobReducer, initialJobState);
 
     useEffect(() => {
-        console.log("Econtext runs");
+        console.log("Econtext Runs API using",BASE_URL);
         loadUser();
     }, [])
 
