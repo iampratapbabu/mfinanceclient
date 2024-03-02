@@ -45,7 +45,7 @@ const Header = () => {
             <header>
                 <Navbar className="bg-body-tertiary">
                     <Container>
-                        <Navbar.Brand href="#home">TEJtech</Navbar.Brand>
+                        <Navbar.Brand>TEJtech</Navbar.Brand>
                         <Navbar.Toggle />
                         <Navbar.Collapse className="justify-content-end">
                             <NavDropdown title="Menu" id="basic-nav-dropdown" className='navbar-menu-dropdown'>
