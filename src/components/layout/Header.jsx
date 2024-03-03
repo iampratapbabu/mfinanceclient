@@ -37,6 +37,10 @@ const Header = () => {
     
         }
     }
+
+    const gotoHome = () =>{
+        navigate('/')
+    }
     
 
 
@@ -45,12 +49,12 @@ const Header = () => {
             <header>
                 <Navbar className="bg-body-tertiary">
                     <Container>
-                        <Navbar.Brand>TEJtech</Navbar.Brand>
+                        <Navbar.Brand onClick={gotoHome}>TEJtech</Navbar.Brand>
                         <Navbar.Toggle />
                         <Navbar.Collapse className="justify-content-end">
                             <NavDropdown title="Menu" id="basic-nav-dropdown" className='navbar-menu-dropdown'>
                                 <NavDropdown.Item><Link to ='/profile'>Profile</Link></NavDropdown.Item>
-                                <NavDropdown.Item><Link to ='/settings'>Settings</Link></NavDropdown.Item>
+                                <NavDropdown.Item><Link to ='/user-settings'>Settings</Link></NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item> <Button onClick={logoutUi}>Log Out</Button></NavDropdown.Item>
                             </NavDropdown>
