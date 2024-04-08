@@ -1,3 +1,79 @@
-.navbar-menu-dropdown{
-  margin-right: 50%;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+.auth-layout {
+  height: 100vh;
+  /* background-image: url("./assets/login-background/3383078.jpg"); */
+  background-image: url(" https://img.freepik.com/free-photo/abstract-digital-grid-black-background_53876-97647.jpg");
+  background-size: cover;
+}
+
+.auth-layout h4{
+  color:white;
+  display: inline;
+  margin: 2rem;
+  font-weight: 400;
+}
+
+
+.login-page {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-page section {
+  width: 500px;
+  border-radius: 20px;
+  border: 2px solid #888888;
+  padding: 10px;
+  box-shadow: 5px 10px 18px #888888;
+
+}
+
+.login-page section h2 {
+  color: aliceblue;
+  text-align: center;
+  font-weight: 100;
+
+}
+
+.login-page Form {
+  text-align: center;
+}
+
+.login-page p {
+  color: aliceblue;
+  margin: 5px;
+  text-align: center;
+}
+
+.login-page a {
+  color: aliceblue;
+}
+
+.login-page input {
+  outline: 0;
+  border-width: 0 0 1px;
+  border-color: yellow;
+}
+
+.login-page input:focus {
+  border-color: burlywood;
+  border-width: 0 0 2px;
+}
+
+
+/*FOOTER*/
+
+footer {
+  text-align: center;
+  color:wheat
+}
+footer a{
+  color:white;
 }

@@ -37,15 +37,15 @@ const Login = () => {
             localStorage.setItem('token', res.resData.token);
             authDispatch({ type: "LOGIN", payload: res.resData.user })
             navigate('/');
-            toast.success("Welcome "+res.resData.user.firstName);
+            toast.success("Welcome " + res.resData.user.firstName);
             setLoading(false);
         } else {
             setLoading(false);
             console.log(res.message);
             if (res.response) {
                 toast.error(titleCase(res.response.data.message));
-            }else{
-                toast.error("Login Failed "+titleCase(res.message));
+            } else {
+                toast.error("Login Failed " + titleCase(res.message));
             }
         }
     }
@@ -53,22 +53,26 @@ const Login = () => {
     if (loading) { return <Loader type={"blocks"} /> }
     return (
         <>
-            <section>
-                <h2>Login</h2>
-                <Form onSubmit={handleSubmit}>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Control name="userid" type="text" placeholder="Enter email" onChange={handleChange} />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Control name="password" type="password" placeholder="Enter Password" onChange={handleChange} />
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Submit
-                    </Button>
-                </Form>
-                <p>Don't Have an account <Link to='/signup'>Signup</Link></p>
+            <div className='login-page'>
+                <section>
+                    <h2>Login</h2>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Control name="userid" type="text" placeholder="abc@xyz.com" onChange={handleChange} />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Control name="password" type="password" placeholder="*********" onChange={handleChange} />
+                        </Form.Group>
+                        <Button variant="light" type="submit">
+                            Submit
+                        </Button>
+                    </Form>
+                    <p>Don't Have an account <Link to='/signup'>Signup</Link></p>
 
-            </section>
+                </section>
+              
+            </div>
+
 
         </>
     )

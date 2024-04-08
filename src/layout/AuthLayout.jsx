@@ -8,10 +8,12 @@ import Container from 'react-bootstrap/Container';
 const AuthLayout = () => {
     return (
         <>
-            <Container>
-            <Outlet />
-            <Footer/>
-            </Container>
+
+            <div className='auth-layout'>
+                <h4>mFinance</h4>
+                <Outlet />
+                <Footer />
+            </div>
         </>
 
     )

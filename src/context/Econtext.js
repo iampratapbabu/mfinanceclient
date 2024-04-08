@@ -41,6 +41,7 @@ export const Eprovider = (props) => {
             if (axiosRes.data) {
                 console.log("loadUser [SUCCESS]", axiosRes.data);
                 authDispatch({ type: "USER_LOADED", payload: axiosRes.data.resData });
+
             } else {
                 authDispatch({ type: "LOGOUT" });
                 navigate('/login');
