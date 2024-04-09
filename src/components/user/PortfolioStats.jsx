@@ -16,14 +16,11 @@ const PortfolioStats = (props) => {
     const [portfolioData, setPortfolioData] = useState();
     const [divSection, setDivSection] = useState("default");
 
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
 
     useEffect(() => {
         console.log("Portfolio stats started");
-        console.log("props passed",props);
+        console.log("props passed", props);
         loadPortfolio();
     }, [])
 
@@ -51,8 +48,16 @@ const PortfolioStats = (props) => {
         }
     }
 
-    const reverseProp = () =>{
+    const reverseProp = () => {
         props.funProp("any value");
+    }
+
+    const getClassName = (amount) =>{
+        if(amount > 0){
+            return "amount-green";
+        }else{
+            return "amount-red";
+        }
     }
 
     if (loading) return (<ContentLoader />);
@@ -66,36 +71,34 @@ const PortfolioStats = (props) => {
                     </>
                     :
                     <>
-                        <p> Net Worth :{portfolioData?.netWorth}</p>
-                        <p>Assets :{portfolioData?.totalAssets}</p>
-                        <p> Liablities :{portfolioData?.totalLiablites}</p>
+                        <div className='summary-card'>
+                            <h6> Net Worth</h6><span className={getClassName(portfolioData?.netWorth)}>{portfolioData?.netWorth}</span>
+                            <hr />
 
-                        <Button variant="primary" onClick={reverseProp}>
-                            Reverse Prop
-                        </Button>
+                            <div className='row'>
+                                <div className='col'>
+                                    <h6>Assets</h6><span>{portfolioData?.totalAssets}</span>
+                                </div>
+                                <div className='col'>
+                                    <h6> Liablities</h6><span>{portfolioData?.totalLiablites}</span>
+                                </div>
+                            </div>
+                            <hr />
 
+                            {/* 
+                            <Button variant="primary" onClick={reverseProp}>
+                                Reverse Prop
+                            </Button> */}
 
-                        <Button variant="primary" onClick={handleShow}>
-                            Add Transaction
-                        </Button>
+                            <Link to='/all-portfolio'>All Portfolio</Link>
 
-                        <Modal show={show} onHide={handleClose}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Transaction Modal</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={handleClose}>
-                                    Close
-                                </Button>
-                                <Button variant="primary" onClick={handleClose}>
-                                    Save Changes
-                                </Button>
-                            </Modal.Footer>
-                        </Modal>
+                        </div>
+
 
                     </>
             }
+
+
         </>
     )
 }

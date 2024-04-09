@@ -18,8 +18,9 @@
   font-weight: 400;
 }
 
+/* LOGIN PAGE */
 
-.login-page {
+.login-page{
   height: 90vh;
   display: flex;
   justify-content: center;
@@ -27,7 +28,7 @@
 }
 
 .login-page section {
-  width: 500px;
+  width: 30rem;
   border-radius: 20px;
   border: 2px solid #888888;
   padding: 10px;
@@ -39,6 +40,8 @@
   color: aliceblue;
   text-align: center;
   font-weight: 100;
+  margin-bottom: 1rem;
+
 
 }
 
@@ -65,6 +68,105 @@
 .login-page input:focus {
   border-color: burlywood;
   border-width: 0 0 2px;
+}
+
+/*SIGNUP PAGE */
+.signup-page{
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-page section{
+  width: 30rem;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 20px;
+  border: 2px solid #888888;
+  padding: 10px;
+  box-shadow: 5px 10px 18px #888888;
+}
+
+.signup-page section h2 {
+  color: aliceblue;
+  text-align: center;
+  font-weight: 100;
+  margin-bottom: 1rem;
+
+}
+
+.signup-page Form {
+  text-align: center;
+}
+
+.signup-page p {
+  color: aliceblue;
+  margin: 5px;
+  text-align: center;
+}
+
+.signup-page a {
+  color: aliceblue;
+}
+
+/*NAVBAR */
+
+.navbar-custom{
+  background-color: #008DDA;
+  height: 3rem;
+}
+
+.navbar-custom h4{
+  color: aliceblue;
+}
+
+/*HOMEPAGE*/
+
+.home-container{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+.add-button{
+  font-size: large;
+  font-weight: 400;
+  border-radius: 10px;
+  border: 0px solid #888888;
+  box-shadow: 2px 5px 5px #888888;
+  background-color: #ffffff;
+  padding: 5px;
+}
+
+.add-button:hover{
+  background-color: #008DDA;
+  color: #ffffff;
+}
+
+.summary-card{
+  /* background-color: red; */
+  border: 1px solid #888888;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 5px 10px 18px #888888;
+}
+
+.summary-card h6{
+  font-weight: 300;
+}
+
+.summary-card span{
+  font-weight: 500;
+}
+
+.amount-green{
+  color: green;
+}
+
+.amount-red{
+color: red;
 }
 
 

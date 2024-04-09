@@ -20,44 +20,43 @@ const Header = () => {
     const navigate = useNavigate();
     const { i18n, t } = useTranslation();
 
-    const {authDispatch,logout} = useContext(Econtext);
-    
+    const { authDispatch, logout,authState } = useContext(Econtext);
+    const {user} = authState;
+
+
 
     useEffect(() => {
 
     }, [])
 
-    const logoutUi = () =>{
-        try{
+    const logoutUi = () => {
+        try {
             logout();
-            authDispatch({ type: "LOGOUT", payload: "Message changed" });            
+            authDispatch({ type: "LOGOUT", payload: "Message changed" });
             navigate('/login');
-    
-        }catch(err){
-    
+
+        } catch (err) {
+
         }
     }
 
-    const gotoHome = () =>{
+    const gotoHome = () => {
         navigate('/')
     }
-    
+
 
 
     return (
         <>
             <header>
-                <Navbar className="bg-body-tertiary">
+                <Navbar className="navbar-custom">
                     <Container>
-                        <Navbar.Brand onClick={gotoHome}>TEJtech</Navbar.Brand>
-                        <Navbar.Toggle />
+                        <Navbar.Brand onClick={gotoHome}><h4>mFinance</h4></Navbar.Brand>
                         <Navbar.Collapse className="justify-content-end">
-                            <NavDropdown title="Menu" id="basic-nav-dropdown" className='navbar-menu-dropdown'>
-                                <NavDropdown.Item><Link to ='/profile'>Profile</Link></NavDropdown.Item>
-                                <NavDropdown.Item><Link to ='/user-settings'>Settings</Link></NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item> <Button onClick={logoutUi}>Log Out</Button></NavDropdown.Item>
-                            </NavDropdown>
+                            <Navbar.Text>
+                                {/* Hi {user?.firstName} */}
+                            <Button variant='danger' onClick={logoutUi}>Log Out</Button>
+                            </Navbar.Text>
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>

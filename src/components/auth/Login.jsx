@@ -30,24 +30,29 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);
-        const res = await login(loginInfo);
-        //console.log("login response",res);
-        if (res.success) {
-            localStorage.setItem('token', res.resData.token);
-            authDispatch({ type: "LOGIN", payload: res.resData.user })
-            navigate('/');
-            toast.success("Welcome " + res.resData.user.firstName);
-            setLoading(false);
+        if (loginInfo.userid == "" || loginInfo.password == "") {
+            toast.error("Please Input Required Values");
         } else {
-            setLoading(false);
-            console.log(res.message);
-            if (res.response) {
-                toast.error(titleCase(res.response.data.message));
+            setLoading(true);
+            const res = await login(loginInfo);
+            //console.log("login response",res);
+            if (res.success) {
+                localStorage.setItem('token', res.resData.token);
+                authDispatch({ type: "LOGIN", payload: res.resData.user })
+                navigate('/');
+                toast.success("Welcome " + res.resData.user.firstName);
+                setLoading(false);
             } else {
-                toast.error("Login Failed " + titleCase(res.message));
+                setLoading(false);
+                console.log(res.message);
+                if (res.response) {
+                    toast.error(titleCase(res.response.data.message));
+                } else {
+                    toast.error("Login Failed " + titleCase(res.message));
+                }
             }
         }
+
     }
 
     if (loading) { return <Loader type={"blocks"} /> }
@@ -70,7 +75,7 @@ const Login = () => {
                     <p>Don't Have an account <Link to='/signup'>Signup</Link></p>
 
                 </section>
-              
+
             </div>
 
 

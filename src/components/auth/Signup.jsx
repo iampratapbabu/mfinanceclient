@@ -45,8 +45,8 @@ const Signup = () => {
             console.log(res.message);
             if (res.response) {
                 toast.error(res.response.data.message);
-            }else{
-                toast.error("Signup Failed "+res.message);
+            } else {
+                toast.error("Signup Failed " + res.message);
             }
             setLoading(false);
         }
@@ -56,15 +56,23 @@ const Signup = () => {
     if (loading) { return <Loader type={"blocks"} /> }
     return (
         <>
-            <section>
-                <h2>Create An Account</h2>
-                <Form onSubmit={handleSubmit}>
-                    <Form.Group className="mb-3" controlId="formFirstName">
-                        <Form.Control name="firstName" type="text" placeholder="Enter First Name" onChange={handleChange} />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formLastName">
-                        <Form.Control name="lastName" type="text" placeholder="Enter Last Name" onChange={handleChange} />
-                    </Form.Group>
+            <div className='signup-page'>
+                <section>
+                    <h2>Create An Account</h2>
+                    <Form onSubmit={handleSubmit}>
+                    <div className='row'>
+                       
+                            <div className='col'>
+                                <Form.Group className="mb-3" controlId="formFirstName">
+                                    <Form.Control name="firstName" type="text" placeholder="Enter First Name" onChange={handleChange} />
+                                </Form.Group>
+                            </div>
+                            <div className='col'>
+                                <Form.Group className="mb-3" controlId="formLastName">
+                                    <Form.Control name="lastName" type="text" placeholder="Enter Last Name" onChange={handleChange} />
+                                </Form.Group>
+                            </div>
+                    </div>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Control name="email" type="email" placeholder="Enter email" onChange={handleChange} />
                     </Form.Group>
@@ -81,10 +89,9 @@ const Signup = () => {
                         <Form.Control name="confirmPassword" type="password" placeholder="Enter Confirm Password" onChange={handleChange} />
                     </Form.Group>
                     <Form.Group controlId="formFile" className="mb-3">
-                        <Form.Label>Select Image</Form.Label>
                         <Form.Control name="userphoto" type="file" onChange={handleChange} />
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+                    <Button variant="light" type="submit">
                         Submit
                     </Button>
                 </Form>
@@ -92,6 +99,7 @@ const Signup = () => {
                 <p>Already Have an account <Link to='/login'>Login</Link></p>
 
             </section>
+        </div >
         </>
     )
 }
