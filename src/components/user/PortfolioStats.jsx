@@ -52,10 +52,10 @@ const PortfolioStats = (props) => {
         props.funProp("any value");
     }
 
-    const getClassName = (amount) =>{
-        if(amount > 0){
+    const getClassName = (amount) => {
+        if (amount > 0) {
             return "amount-green";
-        }else{
+        } else {
             return "amount-red";
         }
     }
@@ -72,25 +72,24 @@ const PortfolioStats = (props) => {
                     :
                     <>
                         <div className='summary-card'>
-                            <h6> Net Worth</h6><span className={getClassName(portfolioData?.netWorth)}>{portfolioData?.netWorth}</span>
-                            <hr />
 
                             <div className='row'>
                                 <div className='col'>
-                                    <h6>Assets</h6><span>{portfolioData?.totalAssets}</span>
+                                    <h6> Net Worth</h6><span className={getClassName(portfolioData?.netWorth)}>₹ {portfolioData?.netWorth}</span>
                                 </div>
                                 <div className='col'>
-                                    <h6> Liablities</h6><span>{portfolioData?.totalLiablites}</span>
+                                    <h6>Assets</h6><span>₹ {portfolioData?.totalAssets}</span>
+                                </div>
+                                <div className='col'>
+                                    <h6> Liablities</h6><span>₹ {portfolioData?.totalLiablites}</span>
                                 </div>
                             </div>
-                            <hr />
 
                             {/* 
                             <Button variant="primary" onClick={reverseProp}>
                                 Reverse Prop
                             </Button> */}
 
-                            <Link to='/all-portfolio'>All Portfolio</Link>
 
                         </div>
 

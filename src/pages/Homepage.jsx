@@ -25,7 +25,7 @@ const HomePage = () => {
           <h5>Hi, {user?.firstName} {user?.lastName}</h5>
 
           <button className='add-button' onClick={handleShow}>
-            Create Transaction
+            +
           </button>
 
         </div>
@@ -33,6 +33,49 @@ const HomePage = () => {
 
 
         <PortfolioStats custom={"this is custom prop"} funProp={funToRun} />
+
+        <div className='summary-card'>
+
+          <h3>Assets</h3>
+          <div className='row'>
+            <div className='col'>
+              <p>Saving Account</p>
+              <h6>as on 13 April 2024</h6>
+            </div>
+            <div className='col'>
+              <h6> Rs 8.63</h6>
+              <button className='btn'>Detail</button>
+            </div>
+          </div>
+          <hr />
+
+          <h3>Liablities</h3>
+          <div className='row'>
+            <div className='col'>
+              <p>Personal Loan</p>
+              <h6>as on 13 April 2024</h6>
+            </div>
+            <div className='col'>
+              <h6> Rs 54,677.84</h6>
+              <button className='btn'>Detail</button>
+            </div>
+          </div>
+          <hr/>
+
+          <div className='row'>
+            <div className='col'>
+              <p>Credit Card</p>
+              <h6>as on 13 April 2024</h6>
+            </div>
+            <div className='col'>
+              <h6> Rs 37,650.67</h6>
+              <button className='btn'>Detail</button>
+            </div>
+          </div>
+          <hr />
+
+
+        </div>
 
       </div>
 

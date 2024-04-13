@@ -9,10 +9,11 @@ const UserLayout = () => {
     return (
         <>
             <Header />
-            <Container>
+            <div className='container-main'>
             <Outlet />
+            </div>
+           
             {/* <Footer /> */}
-            </Container>
         </>
 
     )

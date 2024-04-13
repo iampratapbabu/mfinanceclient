@@ -52,33 +52,37 @@ const AllPortfolio = () => {
 
     return (
         <>
-            <Form.Select onChange={selectPortfolioType} name="portfolioType" aria-label="Default select example">
-                <option>Select Portfolio Type</option>
-                <option value="mutualFunds">mutualFunds</option>
-                <option value="stocks">stocks</option>
-                <option value="bankAccounts">bankAccounts</option>
-                <option value="expenses">expenses</option>
-                <option value="loans">loans</option>
-            </Form.Select>
-            <h3>{portfolioType}</h3>
-            {loading ? <ContentLoader /> : null}
-            {
-                portfolioData && portfolioData.length > 0 ?
-                    <>
-                        {portfolioData.map((singlePortfolio, i) => {
-                            return (
-                                <SinglePortfolio key={i} portfolioType={portfolioType} portfolio={singlePortfolio} />
+            <div className='all-portfolio'>
 
-                            )
-                        })
-                        }
 
-                    </>
-                    :
-                    <>
-                        <p>No Data Found</p>
-                    </>
-            }
+                <Form.Select onChange={selectPortfolioType} name="portfolioType" aria-label="Default select example">
+                    <option>Select Portfolio Type</option>
+                    <option value="mutualFunds">Mutual Funds</option>
+                    <option value="stocks">Stocks</option>
+                    <option value="bankAccounts">Bank Accounts</option>
+                    <option value="expenses">Expenses</option>
+                    <option value="loans">Loans</option>
+                </Form.Select>
+                {/* <h3>{portfolioType}</h3> */}
+                {loading ? <ContentLoader /> : null}
+                {
+                    portfolioData && portfolioData.length > 0 ?
+                        <>
+                            {portfolioData.map((singlePortfolio, i) => {
+                                return (
+                                    <SinglePortfolio key={i} portfolioType={portfolioType} portfolio={singlePortfolio} />
+
+                                )
+                            })
+                            }
+
+                        </>
+                        :
+                        <>
+                            <p>No Data Found</p>
+                        </>
+                }
+            </div>
         </>
 
     )
