@@ -15,6 +15,8 @@ import { useTranslation } from "react-i18next";
 import { BsPersonFill } from "react-icons/bs";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
+import userimg from '../../assets/userimg.png';
+
 
 
 //Econtext files
@@ -64,7 +66,7 @@ const Header = () => {
                         <Navbar.Collapse className="justify-content-end">
                             <Navbar.Text>
                                 {/* Hi {user?.firstName} */}
-                                <Button variant='light' onClick={()=>setShow(true)}><BsPersonFill /></Button>
+                                <Button variant='light' onClick={() => setShow(true)}><BsPersonFill /></Button>
                             </Navbar.Text>
                         </Navbar.Collapse>
                     </Container>
@@ -72,12 +74,28 @@ const Header = () => {
 
                 <Offcanvas className="sidebar" show={show} placement="end" onHide={handleClose}>
                     <Offcanvas.Header closeButton>
-                        <Offcanvas.Title>SideBar</Offcanvas.Title>
+                        <Offcanvas.Title>{}</Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body>
-                    <Link to='/all-portfolio'>All Portfolio</Link>
+                        <div className='sidebar-main'>
+                            <div className='img-block'>
+                                <img src={userimg} height="50px" width="50px"></img>
+                            </div>
+                            <h5>Tej Pratap</h5>
+                            <hr/>
+                            <div className='links'>
+                                <p><Link to='/profile' onClick={handleClose}>Profile</Link></p>
+                                <p><Link to='/all-portfolio' onClick={handleClose}>Portfolio</Link></p>
+                                <p><Link to='/user-settings' onClick={handleClose}>Settings</Link></p>
+                                <hr/>
+                                <Button variant='danger' onClick={logoutUi}>Log Out</Button>
+                            </div>
 
-                    <Button variant='light' onClick={logoutUi}>Log Out</Button>
+
+                           
+
+                        </div>
+
 
                     </Offcanvas.Body>
                 </Offcanvas>

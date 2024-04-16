@@ -34,6 +34,8 @@ const HomePage = () => {
 
         <PortfolioStats custom={"this is custom prop"} funProp={funToRun} />
 
+
+
         <div className='summary-card'>
 
           <h3>Assets</h3>
@@ -44,6 +46,17 @@ const HomePage = () => {
             </div>
             <div className='col'>
               <h6> Rs 8.63</h6>
+              <button className='btn'>Detail</button>
+            </div>
+          </div>
+          <br />
+          <div className='row'>
+            <div className='col'>
+              <p>Mutual Funds</p>
+              <h6>as on 13 April 2024</h6>
+            </div>
+            <div className='col'>
+              <h6> Rs 1,75,000</h6>
               <button className='btn'>Detail</button>
             </div>
           </div>
@@ -60,7 +73,7 @@ const HomePage = () => {
               <button className='btn'>Detail</button>
             </div>
           </div>
-          <hr/>
+          <hr />
 
           <div className='row'>
             <div className='col'>
@@ -77,11 +90,83 @@ const HomePage = () => {
 
         </div>
 
+        <div className='summary-card'>
+
+          <div className='row'>
+            <div className='col'>
+              <h6>Filter On</h6><span>Last Week</span>
+            </div>
+            <div className='col'>
+              <h6>Category</h6><span>Fuel</span>
+            </div>
+            <div className='col'>
+              <h6> Spent</h6><span>₹ {"23"}</span>
+            </div>
+          </div>
+          <hr />
+
+          <div className='row'>
+            <div className='col'>
+              <h6>Filter On</h6><span>Last Week</span>
+            </div>
+            <div className='col'>
+              <h6>Category</h6><span>Fuel</span>
+            </div>
+            <div className='col'>
+              <h6> Spent</h6><span>₹ {"23"}</span>
+            </div>
+          </div>
+
+          <hr />
+
+          <div className='row'>
+            <div className='col'>
+              <h6>Filter On</h6><span>Last Week</span>
+            </div>
+            <div className='col'>
+              <h6>Category</h6><span>Fuel</span>
+            </div>
+            <div className='col'>
+              <h6> Spent</h6><span>₹ {"23"}</span>
+            </div>
+          </div>
+
+          <hr />
+
+          <div className='row'>
+            <div className='col'>
+              <h6>Filter On</h6><span>Last Week</span>
+            </div>
+            <div className='col'>
+              <h6>Category</h6><span>Fuel</span>
+            </div>
+            <div className='col'>
+              <h6> Spent</h6><span>₹ {"23"}</span>
+            </div>
+          </div>
+          <hr />
+
+          <div className='row'>
+            <div className='col'>
+              <h6>Filter On</h6><span>Last Week</span>
+            </div>
+            <div className='col'>
+              <h6>Category</h6><span>Fuel</span>
+            </div>
+            <div className='col'>
+              <h6> Spent</h6><span>₹ {"23"}</span>
+            </div>
+          </div>
+
+
+        </div>
+
+
       </div>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Transaction Modal</Modal.Title>
+          <Modal.Title>Record Expense</Modal.Title>
         </Modal.Header>
         <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
         <Modal.Footer>
