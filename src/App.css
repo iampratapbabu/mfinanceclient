@@ -3,7 +3,7 @@
   padding: 0;
 }
 
-.container-main{
+.container-main {
   /* background-color: green; */
   display: flex;
   justify-content: center;
@@ -12,14 +12,14 @@
 
 .auth-layout {
   height: 100vh;
-   /* background-image: url("./assets/background.jpg"); */
+  /* background-image: url("./assets/background.jpg"); */
   /* background-image: url(" https://img.freepik.com/free-photo/abstract-digital-grid-black-background_53876-97647.jpg"); */
   background-size: cover;
-  background-image: linear-gradient(to bottom right,#002f4b,#dc4225);
-	opacity: .7; 
+  background-image: linear-gradient(to bottom right, #002f4b, #dc4225);
+  opacity: .7;
 }
 
-.auth-layout h4{
+.auth-layout h4 {
   color: #ffff;
   display: inline;
   margin: 2rem;
@@ -28,7 +28,7 @@
 
 /* LOGIN PAGE */
 
-.login-page{
+.login-page {
   height: 90vh;
   display: flex;
   justify-content: center;
@@ -80,14 +80,14 @@
 }
 
 /*SIGNUP PAGE */
-.signup-page{
+.signup-page {
   height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.signup-page section{
+.signup-page section {
   width: 30rem;
   padding: 1rem;
   text-align: center;
@@ -123,29 +123,38 @@
 
 /*NAVBAR */
 
-.navbar-custom{
+.navbar-custom {
   background-color: #008DDA;
   height: 3rem;
 }
 
-.navbar-custom h4{
+.navbar-custom h4 {
   color: aliceblue;
-  cursor:pointer
+  cursor: pointer
 }
 
+.navbar-text button {
+  font-size: 1.5rem;
+  background-color: transparent;
+  border: 0;
+  color: #ffff;
+}
+
+
+
 /*HOMEPAGE*/
-.home-page{
+.home-page {
   width: 90%;
 }
 
-.home-container{
+.home-container {
   display: flex;
   justify-content: space-between;
   margin: 1rem 0;
 
 }
 
-.add-button{
+.add-button {
   border-radius: 10%;
   height: 50px;
   border: 2px solid #008DDA;
@@ -153,35 +162,35 @@
   background-color: #008DDA;
   width: 40px;
   height: 40px;
-  color:#ffff;
+  color: #ffff;
   font-size: 1.5rem;
   font-weight: bold;
   justify-content: center;
 }
 
-.add-button:hover{
+.add-button:hover {
   background-color: #ffff;
   color: #008DDA;
 }
 
-.single-summary-card{
+.single-summary-card {
   border-radius: 10px;
   padding: 10px;
-  margin:1rem 0;
+  margin: 1rem 0;
   border: 1px solid lightgray;
 }
 
-.single-summary-card h6{
+.single-summary-card h6 {
   font-size: 0.8rem;
   font-weight: 400;
 }
 
-.single-summary-card span{
+.single-summary-card span {
   font-size: 1.2rem;
 }
 
 
-.summary-card{
+.summary-card {
   /* background-color: red; */
   border: 1px solid lightgray;
   border-radius: 10px;
@@ -190,79 +199,107 @@
   margin-bottom: 1rem;
 }
 
-.summary-card h6{
+.summary-card h6 {
   font-weight: 300;
 }
 
-.summary-card span{
+.summary-card span {
   font-weight: 500;
 }
 
-.amount-green{
+.amount-green {
   color: green;
 }
 
-.amount-red{
-color: red;
+.amount-red {
+  color: red;
 }
 
 /* ALL PORTFOLIO PAGE */
-.all-portfolio{
+.all-portfolio {
   margin: 1rem;
   width: 90%;
 }
 
-.all-portfolio h3{
+.all-portfolio h3 {
   font-weight: 400;
   text-align: center;
   margin: 0.5rem;
   text-transform: capitalize;
 }
 
-.single-portfolio{
+.single-portfolio {
   margin: 0.5rem;
 }
 
 /* sidebar */
-.sidebar{
+.sidebar {
   /* height:200px; */
-  width:300px !important;
- 
-}
-
-.sidebar-main{
+  width: 300px !important;
 
 }
-.img-block{
+
+.sidebar-main {}
+
+.img-block {
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
 }
 
-.sidebar-main h5{
-text-align: center;
+.sidebar-main h5 {
+  text-align: center;
 }
 
-.links{
+.links {
   padding: 0.5rem;
   width: 100%;
   text-align: center;
 
 }
 
-.links a{
+.links a {
   text-decoration: none;
   text-transform: uppercase;
 }
 
+/*PROFILE*/
+.tabs {
+  /* background-color: red; */
+  margin-top: 5px;
+  /* color:#ffff; */
+}
+
+.tabs li {
+  font-size: 0.9rem;
+  font-weight: bold;
+  /* background-color: #008DDA; */
+  color: #008DDA;
+  margin: 2px;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #008DDA;
+  color: #ffff
+}
+
+
+.active {
+  /* background-color: red; */
+  /* border: 1px solid lightgray; */
+
+
+  border-radius: 5px;
+}
 
 /*FOOTER*/
 
 footer {
   text-align: center;
-  color:#ffff;
+  color: #ffff;
 }
-footer a{
 
-  color:#ffff;
+footer a {
+
+  color: #ffff;
 }
