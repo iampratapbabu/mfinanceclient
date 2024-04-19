@@ -12,11 +12,14 @@
 
 .auth-layout {
   height: 100vh;
-  /* background-image: url("./assets/background.jpg"); */
-  /* background-image: url(" https://img.freepik.com/free-photo/abstract-digital-grid-black-background_53876-97647.jpg"); */
+  /* background-image: url("./assets/login.jpeg"); */
+  /* background-image: url("https://img.freepik.com/free-photo/abstract-digital-grid-black-background_53876-97647.jpg");  */
   background-size: cover;
-  background-image: linear-gradient(to bottom right, #002f4b, #dc4225);
-  opacity: .7;
+  /*background-image: linear-gradient(to bottom right, #5755fe, #fff7fc); */
+  /* background: rgb(238,174,202);
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(11,109,226,1) 100%); */
+  background:linear-gradient(0deg,  rgba(238,174,202,0.5), rgba(11, 109, 226, 0.4)), url("./assets/login.jpeg");
+  /* opacity: .3; */
 }
 
 .auth-layout h4 {
@@ -38,10 +41,9 @@
 .login-page section {
   width: 30rem;
   border-radius: 20px;
-  border: 2px solid #ffff;
+  border: 4px solid #ffff;
   padding: 10px;
-  box-shadow: 5px 10px 18px #888888;
-
+  box-shadow: 5px 10px 18px #ffff;
 }
 
 .login-page section h2 {
@@ -75,6 +77,7 @@
 }
 
 .login-page input:focus {
+  font-weight: 500;
   border-color: green;
   border-width: 0 0 3px;
 }
