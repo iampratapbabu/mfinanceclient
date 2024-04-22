@@ -4,6 +4,8 @@ import PortfolioStats from '../components/user/PortfolioStats';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { addPortfolio } from '../helper/httpHelper';
+import Form from 'react-bootstrap/Form';
 
 const HomePage = () => {
   const { authState } = useContext(Econtext);
@@ -12,10 +14,36 @@ const HomePage = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [expense, setExpense] = useState({
+    expenseType: "",
+    amount: 0
+  });
 
 
   const funToRun = (param) => {
     console.log("reverse ran from child component with param", param);
+  }
+
+  const handleChange = (e) => {
+    setExpense({ ...expense, [e.target.name]: e.target.value })  
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    createPortfolio();
+  }
+
+  const createPortfolio = async () => {
+    try {
+      const reqData = {};
+
+      reqData.expenses = expense;
+      console.log(reqData);
+      const serverRes = await addPortfolio(reqData);
+      console.log(serverRes);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -168,16 +196,26 @@ const HomePage = () => {
         <Modal.Header closeButton>
           <Modal.Title>Record Expense</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
+        <Form onSubmit={handleSubmit}>
+          <Modal.Body>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Control name="expenseType" type="text" placeholder="Enter Expense Type" onChange={handleChange} />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} />
+            </Form.Group>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="success" type="submit">
+              Submit
+            </Button>
+          </Modal.Footer>
+        </Form>
       </Modal>
+
 
 
     </>

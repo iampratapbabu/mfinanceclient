@@ -20,6 +20,7 @@ export const addPortfolio = async (portfolio) => {
     try {
         const axiosRes = await axios({
           method: "POST",
+          headers: { 'x-access-token': localStorage.getItem('token') },
           url: `${BASE_URL}/api/portfolio`,
           data: portfolio,
         });

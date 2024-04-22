@@ -4,21 +4,67 @@ import Tabs from 'react-bootstrap/Tabs';
 import Accordion from 'react-bootstrap/Accordion';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { createPortfolio } from '../../helper/httpHelper';
+import { addPortfolio, createPortfolio } from '../../helper/httpHelper';
+import Form from 'react-bootstrap/Form';
+import axios from 'axios';
+import { BASE_URL } from '../../config';
+import SinglePortfolio from '../../components/user/SinglePortfolio';
+import ContentLoader from '../../components/loader/ContentLoader';
+
 
 
 
 const UserProfile = () => {
 
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [loading, setLoading] = useState(false);
+  const [portfolioData, setPortfolioData] = useState();
+  const [key, setKey] = useState('mutualFunds');
+
+
+
+  const [mutualFund, setMutualFund] = useState({
+    name: "",
+    amount: 0
+  });
+
+  const [stock, setStock] = useState({
+    name: "",
+    amount: 0
+  });
+
+  const [bankAccount, setBankAccount] = useState({
+    name: "",
+    accountHolderName: "",
+    accountNumber: "",
+    ifscCode: "",
+    amount: 0
+  });
+
+  const [expense, setExpense] = useState({
+    expenseType: "",
+    amount: 0
+  });
+
+  const [loan, setLoan] = useState({
+    amount: 0,
+    loanType: "",
+    remarks: "",
+  });
+
+
 
   useEffect(() => {
 
   }, [])
 
-  
+  const handleClose = async () => setShow(false);
+  const handleShow = (reqPortfolioType) => {
+    loadPortfolio(reqPortfolioType);
+    setShow(true);
+  }
+
+
   const clickMe = async () => {
     try {
       const res = await createPortfolio(2);
@@ -30,6 +76,75 @@ const UserProfile = () => {
 
   }
 
+  const handleChange = (e) => {
+   
+
+    if (key === "mutualFunds")  setMutualFund({ ...mutualFund, [e.target.name]: e.target.value });
+    if (key === "stocks")  setStock({ ...stock, [e.target.name]: e.target.value });
+    if (key === "bankAccounts")  setBankAccount({ ...bankAccount, [e.target.name]: e.target.value });
+    if (key === "expenses")  setExpense({ ...expense, [e.target.name]: e.target.value });
+    if (key === "loans")  setLoan({ ...loan, [e.target.name]: e.target.value });
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    createPortfolio();
+  }
+
+  const createPortfolio = async () => {
+    try {
+      const reqData = {};
+      //reqData.portfolioType = data;
+
+      if (key === "mutualFunds") reqData.mutualFunds = mutualFund;
+      if (key === "stocks") reqData.stocks = stock;
+      if (key === "bankAccounts") reqData.bankAccounts = bankAccount;
+      if (key === "expenses") reqData.expenses = expense;
+      if (key === "loans") reqData.loans = loan;
+      console.log(reqData);
+      const serverRes = await addPortfolio(reqData);
+      console.log(serverRes);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handleTabKey = (tabKey) => {
+    setKey(tabKey);
+    loadPortfolio(tabKey);
+  }
+
+  const loadPortfolio = async (ptype) => {
+    try {
+      console.log("load portfolio runs with value", ptype);
+      setLoading(true);
+      const axiosRes = await axios({
+        method: "POST",
+        headers: { 'x-access-token': localStorage.getItem('token') },
+        url: `${BASE_URL}/api/portfolio/user-portfolio`,
+        data: { portfolioType: ptype }
+      });
+      console.log("loadportfolio [SUCCESS]", axiosRes.data);
+      if (axiosRes.data.success) {
+        setLoading(false);
+        const { resData } = axiosRes.data;
+        if (resData.portfolioType === "mutualFunds") setPortfolioData(resData.userMutualFunds);
+        if (resData.portfolioType === "stocks") setPortfolioData(resData.userStocks);
+        if (resData.portfolioType === "bankAccounts") setPortfolioData(resData.userBankAccounts);
+        if (resData.portfolioType === "expenses") setPortfolioData(resData.userExpenses);
+        if (resData.portfolioType === "loans") setPortfolioData(resData.userLoans);
+      } else {
+        setLoading(false);
+
+      }
+    } catch (err) {
+      console.log("loadportfolio [ERROR]", err);
+      setLoading(false);
+    }
+  }
+
+
+
   return (
     <>
 
@@ -37,152 +152,48 @@ const UserProfile = () => {
 
         <div className='tabs'>
           <Tabs
-            defaultActiveKey="mf"
+            defaultActiveKey="mutualFunds"
             id="fill-tab-example"
             className="mb-3"
             fill
+            onSelect={(k) => handleTabKey(k)}
           >
 
-            <Tab eventKey="mf" title="Mutual Funds">
-
-              <div className='single-portfolio'>
-
-                <div className="d-grid gap-2 mb-3">
-                  <Button variant="info" size="lg" onClick={clickMe}>
-                    + Add Mutual Fund
-                  </Button>
-                </div>
-
-                <Accordion defaultActiveKey="1">
-                  <Accordion.Item eventKey="0">
-                    <Accordion.Header>{"Motilal Oswal"}</Accordion.Header>
-
-                    <Accordion.Body>
-                      <div className='portfolio-detail'>
-                        <h6>Name: <span>{"Motilal Oswal"}</span></h6>
-                        <h6>Invested Amount: ₹ <span>{"3000"}</span></h6>
-                        <h6>Investment Type: <span>{"sip"}</span></h6>
-                        <h6>SIP Date: <span>{"23/10/2024"}</span></h6>
-                        <Button variant='warning'>Edit</Button>
-                        <Button variant='danger'>Delete</Button>
-                      </div>
-                    </Accordion.Body>
-                  </Accordion.Item>
-                </Accordion>
-              </div>
-
-
-            </Tab>
-            <Tab eventKey="stock" title="Stocks">
-              <div className='single-portfolio'>
-
-                <div className="d-grid gap-2 mb-3">
-                  <Button variant="info" size="lg" onClick={handleShow}>
-                    + Add Stock
-                  </Button>
-                </div>
-
-                <Accordion defaultActiveKey="1">
-                  <Accordion.Item eventKey="0">
-                    <Accordion.Header>{"Unitech"}</Accordion.Header>
-
-                    <Accordion.Body>
-                      <div className='portfolio-detail'>
-                        <h6>Name: <span>{"Motilal Oswal"}</span></h6>
-                        <h6>Invested Amount: ₹ <span>{"3000"}</span></h6>
-                        <h6>Investment Type: <span>{"sip"}</span></h6>
-                        <h6>SIP Date: <span>{"23/10/2024"}</span></h6>
-                        <Button variant='warning'>Edit</Button>
-                        <Button variant='danger'>Delete</Button>
-                      </div>
-                    </Accordion.Body>
-                  </Accordion.Item>
-                </Accordion>
-              </div>
-            </Tab>
-            <Tab eventKey="account" title="Accounts">
-              <div className='single-portfolio'>
-
-                <div className="d-grid gap-2 mb-3">
-                  <Button variant="info" size="lg" onClick={handleShow}>
-                    + Add Bank Account
-                  </Button>
-                </div>
-
-                <Accordion defaultActiveKey="1">
-                  <Accordion.Item eventKey="0">
-                    <Accordion.Header>{"Indusind Bank"}</Accordion.Header>
-
-                    <Accordion.Body>
-                      <div className='portfolio-detail'>
-                        <h6>Name: <span>{"Motilal Oswal"}</span></h6>
-                        <h6>Invested Amount: ₹ <span>{"3000"}</span></h6>
-                        <h6>Investment Type: <span>{"sip"}</span></h6>
-                        <h6>SIP Date: <span>{"23/10/2024"}</span></h6>
-                        <Button variant='warning'>Edit</Button>
-                        <Button variant='danger'>Delete</Button>
-                      </div>
-                    </Accordion.Body>
-                  </Accordion.Item>
-                </Accordion>
-              </div>
-            </Tab>
-            <Tab eventKey="loan" title="Loans">
-              <div className='single-portfolio'>
-
-                <div className="d-grid gap-2 mb-3">
-                  <Button variant="info" size="lg" onClick={handleShow}>
-                    + Add Loan
-                  </Button>
-                </div>
-
-                <Accordion defaultActiveKey="1">
-                  <Accordion.Item eventKey="0">
-                    <Accordion.Header>{"Motilal Oswal"}</Accordion.Header>
-
-                    <Accordion.Body>
-                      <div className='portfolio-detail'>
-                        <h6>Name: <span>{"Motilal Oswal"}</span></h6>
-                        <h6>Invested Amount: ₹ <span>{"3000"}</span></h6>
-                        <h6>Investment Type: <span>{"sip"}</span></h6>
-                        <h6>SIP Date: <span>{"23/10/2024"}</span></h6>
-                        <Button variant='warning'>Edit</Button>
-                        <Button variant='danger'>Delete</Button>
-                      </div>
-                    </Accordion.Body>
-                  </Accordion.Item>
-                </Accordion>
-              </div>
-            </Tab>
-            <Tab eventKey="expense" title="Expenses">
-              <div className='single-portfolio'>
-
-                <div className="d-grid gap-2 mb-3">
-                  <Button variant="info" size="lg" onClick={handleShow}>
-                    + Add Expense
-                  </Button>
-                </div>
-
-                <Accordion defaultActiveKey="1">
-                  <Accordion.Item eventKey="0">
-                    <Accordion.Header>{"Motilal Oswal"}</Accordion.Header>
-
-                    <Accordion.Body>
-                      <div className='portfolio-detail'>
-                        <h6>Name: <span>{"Motilal Oswal"}</span></h6>
-                        <h6>Invested Amount: ₹ <span>{"3000"}</span></h6>
-                        <h6>Investment Type: <span>{"sip"}</span></h6>
-                        <h6>SIP Date: <span>{"23/10/2024"}</span></h6>
-                        <Button variant='warning'>Edit</Button>
-                        <Button variant='danger'>Delete</Button>
-                      </div>
-                    </Accordion.Body>
-                  </Accordion.Item>
-                </Accordion>
-              </div>
-            </Tab>
+            <Tab eventKey="mutualFunds" title="Mutual Funds"></Tab>
+            <Tab eventKey="stocks" title="Stocks"></Tab>
+            <Tab eventKey="bankAccounts" title="Accounts"></Tab>
+            <Tab eventKey="loans" title="Loans"></Tab>
+            <Tab eventKey="expenses" title="Expenses"></Tab>
 
           </Tabs>
+
+          <div className='single-portfolio'>
+            <div className="d-grid gap-2 mb-3">
+              <Button variant="info" size="lg" onClick={() => handleShow('mutualFunds')}>
+                + Add {key}
+              </Button>
+            </div>
+
+          </div>
+
+          {loading ? <ContentLoader /> : null}
+          {
+            portfolioData && portfolioData.length > 0 ?
+              <>
+                {portfolioData.map((singlePortfolio, i) => {
+                  return (
+                    <SinglePortfolio key={i} portfolioType={key} portfolio={singlePortfolio} />
+
+                  )
+                })
+                }
+
+              </>
+              :
+              <>
+                <p>No Data Found</p>
+              </>
+          }
 
 
         </div>
@@ -194,17 +205,88 @@ const UserProfile = () => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Record Expense</Modal.Title>
+          <Modal.Title>Add {key}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
+        <Form onSubmit={handleSubmit}>
+          <Modal.Body>
+            {key === "mutualFunds" &&
+              <>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Control name="name" type="text" placeholder="Enter MF Name" onChange={handleChange} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} />
+                </Form.Group>
+              </>
+            }
+
+            {key === "stocks" &&
+              <>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Control name="name" type="text" placeholder="Enter Stocks Name" onChange={handleChange} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} />
+                </Form.Group>
+              </>
+            }
+
+            {key === "bankAccounts" &&
+              <>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Control name="name" type="text" placeholder="Enter Bank Name" onChange={handleChange} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Control name="accountHolderName" type="text" placeholder="Enter Account Holder Name" onChange={handleChange} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Control name="accountNumber" type="text" placeholder="Enter Account Number" onChange={handleChange} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Control name="ifscCode" type="text" placeholder="Enter IFSC Code" onChange={handleChange} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Control name="currentBalance" type="number" placeholder="Enter Current Balance" onChange={handleChange} />
+                </Form.Group>
+              </>
+            }
+
+            {key === "expenses" &&
+              <>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Control name="expenseType" type="text" placeholder="Enter Expense Type" onChange={handleChange} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} />
+                </Form.Group>
+              </>
+            }
+
+            {key === "loans" &&
+              <>
+
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Control name="amount" type="number" placeholder="Enter Loan Amount" onChange={handleChange} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Control name="loanType" type="text" placeholder="Enter Loan Type" onChange={handleChange} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Control name="remarks" type="text" placeholder="Enter Remarks" onChange={handleChange} />
+                </Form.Group>
+              </>
+            }
+
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="success" type="submit">
+              Submit
+            </Button>
+          </Modal.Footer>
+        </Form>
       </Modal>
 
 
