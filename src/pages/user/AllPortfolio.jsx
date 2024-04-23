@@ -50,6 +50,8 @@ const AllPortfolio = () => {
         setPortfolioType(e.target.value);
     }
 
+ 
+
     return (
         <>
             <div className='all-portfolio'>
@@ -90,7 +92,13 @@ const AllPortfolio = () => {
                         <>
                             {portfolioData.map((singlePortfolio, i) => {
                                 return (
-                                    <SinglePortfolio key={i} portfolioType={portfolioType} portfolio={singlePortfolio} />
+                                    <SinglePortfolio
+                                        refProp={"allPortfolio"}
+                                        setPortfolio={null}
+                                        key={i}
+                                        portfolioType={portfolioType}
+                                        portfolio={singlePortfolio}
+                                    />
 
                                 )
                             })

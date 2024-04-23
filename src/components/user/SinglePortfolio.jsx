@@ -1,12 +1,19 @@
 import React, { useEffect } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
+import Button from 'react-bootstrap/Button';
 
 
-const SinglePortfolio = ({ portfolio, portfolioType, key }) => {
+
+const SinglePortfolio = ({ refProp,setPortfolio, portfolio, portfolioType, key }) => {
 
     useEffect(() => {
         //console.log(portfolio);
-    }, [])
+        //console.log(props);
+    }, []);
+
+    const handleEdit = (portfolioPaylod) =>{
+        setPortfolio(portfolioPaylod)
+    }
 
 
     return (
@@ -27,6 +34,13 @@ const SinglePortfolio = ({ portfolio, portfolioType, key }) => {
                                         <h6>Invested Amount: ₹ <span>{portfolio?.amount}</span></h6>
                                         <h6>Investment Type: <span>{portfolio?.investmentType}</span></h6>
                                         <h6>SIP Date: <span>{portfolio?.dateOfSip}</span></h6>
+                                        {
+                                            refProp == "profile" &&
+                                            <>
+                                                <Button variant='warning' onClick={()=>handleEdit(portfolio)}>Edit</Button>
+                                                <Button variant='danger'>Delete</Button>
+                                            </>
+                                        }
                                     </div>
                                 </Accordion.Body>
 
@@ -37,10 +51,17 @@ const SinglePortfolio = ({ portfolio, portfolioType, key }) => {
                             <>
                                 <Accordion.Header>{portfolio?.name}</Accordion.Header>
                                 <Accordion.Body>
-                                <div className='portfolio-detail'>
+                                    <div className='portfolio-detail'>
                                         <h6>Name: <span>{portfolio?.name}</span></h6>
                                         <h6>Invested Amount: ₹ <span>{portfolio?.amount}</span></h6>
                                         <h6>Purchased Date: <span>{portfolio?.dateOfInvestment}</span></h6>
+                                        {
+                                            refProp == "profile" &&
+                                            <>
+                                                <Button variant='warning'>Edit</Button>
+                                                <Button variant='danger'>Delete</Button>
+                                            </>
+                                        }
                                     </div>
                                 </Accordion.Body>
 
@@ -51,10 +72,17 @@ const SinglePortfolio = ({ portfolio, portfolioType, key }) => {
                             <>
                                 <Accordion.Header>{portfolio?.name}</Accordion.Header>
                                 <Accordion.Body>
-                                <div className='portfolio-detail'>
+                                    <div className='portfolio-detail'>
                                         <h6>Name: <span>{portfolio?.name}</span></h6>
                                         <h6>Current Balance: ₹ <span>{portfolio?.currentBalance}</span></h6>
                                         <h6>IFSC Code: <span>{portfolio?.ifscCode}</span></h6>
+                                        {
+                                            refProp == "profile" &&
+                                            <>
+                                                <Button variant='warning'>Edit</Button>
+                                                <Button variant='danger'>Delete</Button>
+                                            </>
+                                        }
                                     </div>
                                 </Accordion.Body>
 
@@ -66,10 +94,17 @@ const SinglePortfolio = ({ portfolio, portfolioType, key }) => {
                             <>
                                 <Accordion.Header>{portfolio?.expenseType}</Accordion.Header>
                                 <Accordion.Body>
-                                <div className='portfolio-detail'>
+                                    <div className='portfolio-detail'>
                                         <h6>Expense Type: <span>{portfolio?.expenseType}</span></h6>
                                         <h6>Amount: ₹ <span>{portfolio?.amount}</span></h6>
                                         <h6>Transaction Date: <span>{portfolio?.createdAt}</span></h6>
+                                        {
+                                            refProp == "profile" &&
+                                            <>
+                                                <Button variant='warning'>Edit</Button>
+                                                <Button variant='danger'>Delete</Button>
+                                            </>
+                                        }
                                     </div>
                                 </Accordion.Body>
 
@@ -80,11 +115,18 @@ const SinglePortfolio = ({ portfolio, portfolioType, key }) => {
                             <>
                                 <Accordion.Header>{portfolio?.remarks}</Accordion.Header>
                                 <Accordion.Body>
-                                <div className='portfolio-detail'>
+                                    <div className='portfolio-detail'>
                                         <h6>Title: <span>{portfolio?.remarks}</span></h6>
                                         <h6>Loan Amount: ₹ <span>{portfolio?.amount}</span></h6>
                                         <h6>Loan Type: <span>{portfolio?.loanType}</span></h6>
                                         <h6>Date: <span>{portfolio?.createdAt}</span></h6>
+                                        {
+                                            refProp == "profile" &&
+                                            <>
+                                                <Button variant='warning'>Edit</Button>
+                                                <Button variant='danger'>Delete</Button>
+                                            </>
+                                        }
                                     </div>
                                 </Accordion.Body>
 

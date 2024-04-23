@@ -25,7 +25,7 @@ const HomePage = () => {
   }
 
   const handleChange = (e) => {
-    setExpense({ ...expense, [e.target.name]: e.target.value })  
+    setExpense({ ...expense, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async (e) => {
@@ -119,11 +119,12 @@ const HomePage = () => {
         </div>
 
         <div className='summary-card'>
-
+          <h3>Expense <span>{"Rs 2,400"}</span></h3>
+          <hr />
+          <h6>Filter On</h6><span>Last Week</span>
+          <hr />
           <div className='row'>
-            <div className='col'>
-              <h6>Filter On</h6><span>Last Week</span>
-            </div>
+
             <div className='col'>
               <h6>Category</h6><span>Fuel</span>
             </div>
@@ -134,23 +135,7 @@ const HomePage = () => {
           <hr />
 
           <div className='row'>
-            <div className='col'>
-              <h6>Filter On</h6><span>Last Week</span>
-            </div>
-            <div className='col'>
-              <h6>Category</h6><span>Fuel</span>
-            </div>
-            <div className='col'>
-              <h6> Spent</h6><span>₹ {"23"}</span>
-            </div>
-          </div>
 
-          <hr />
-
-          <div className='row'>
-            <div className='col'>
-              <h6>Filter On</h6><span>Last Week</span>
-            </div>
             <div className='col'>
               <h6>Category</h6><span>Fuel</span>
             </div>
@@ -162,9 +147,19 @@ const HomePage = () => {
           <hr />
 
           <div className='row'>
+
             <div className='col'>
-              <h6>Filter On</h6><span>Last Week</span>
+              <h6>Category</h6><span>Fuel</span>
             </div>
+            <div className='col'>
+              <h6> Spent</h6><span>₹ {"23"}</span>
+            </div>
+          </div>
+
+          <hr />
+
+          <div className='row'>
+
             <div className='col'>
               <h6>Category</h6><span>Fuel</span>
             </div>
@@ -175,9 +170,7 @@ const HomePage = () => {
           <hr />
 
           <div className='row'>
-            <div className='col'>
-              <h6>Filter On</h6><span>Last Week</span>
-            </div>
+    
             <div className='col'>
               <h6>Category</h6><span>Fuel</span>
             </div>

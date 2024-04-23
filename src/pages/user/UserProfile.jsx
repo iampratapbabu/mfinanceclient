@@ -4,7 +4,7 @@ import Tabs from 'react-bootstrap/Tabs';
 import Accordion from 'react-bootstrap/Accordion';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { addPortfolio, createPortfolio } from '../../helper/httpHelper';
+import { addPortfolio, createPortfolio, editPortfolio } from '../../helper/httpHelper';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import { BASE_URL } from '../../config';
@@ -25,7 +25,8 @@ const UserProfile = () => {
 
   const [mutualFund, setMutualFund] = useState({
     name: "",
-    amount: 0
+    amount: 0,
+    actionType:"create",
   });
 
   const [stock, setStock] = useState({
@@ -55,7 +56,7 @@ const UserProfile = () => {
 
 
   useEffect(() => {
-
+    loadPortfolio("mutualFunds");
   }, [])
 
   const handleClose = async () => setShow(false);
@@ -77,23 +78,26 @@ const UserProfile = () => {
   }
 
   const handleChange = (e) => {
-   
 
-    if (key === "mutualFunds")  setMutualFund({ ...mutualFund, [e.target.name]: e.target.value });
-    if (key === "stocks")  setStock({ ...stock, [e.target.name]: e.target.value });
-    if (key === "bankAccounts")  setBankAccount({ ...bankAccount, [e.target.name]: e.target.value });
-    if (key === "expenses")  setExpense({ ...expense, [e.target.name]: e.target.value });
-    if (key === "loans")  setLoan({ ...loan, [e.target.name]: e.target.value });
+
+    if (key === "mutualFunds") setMutualFund({ ...mutualFund, [e.target.name]: e.target.value });
+    if (key === "stocks") setStock({ ...stock, [e.target.name]: e.target.value });
+    if (key === "bankAccounts") setBankAccount({ ...bankAccount, [e.target.name]: e.target.value });
+    if (key === "expenses") setExpense({ ...expense, [e.target.name]: e.target.value });
+    if (key === "loans") setLoan({ ...loan, [e.target.name]: e.target.value });
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    createPortfolio();
+    addEditPortfolio();
   }
 
-  const createPortfolio = async () => {
+ 
+
+  const addEditPortfolio = async () => {
     try {
-      const reqData = {};
+      let serverRes;
+      let reqData = {};
       //reqData.portfolioType = data;
 
       if (key === "mutualFunds") reqData.mutualFunds = mutualFund;
@@ -102,7 +106,10 @@ const UserProfile = () => {
       if (key === "expenses") reqData.expenses = expense;
       if (key === "loans") reqData.loans = loan;
       console.log(reqData);
-      const serverRes = await addPortfolio(reqData);
+      serverRes = await addPortfolio(reqData);
+      
+      serverRes = await editPortfolio(reqData);
+
       console.log(serverRes);
     } catch (err) {
       console.log(err);
@@ -141,6 +148,13 @@ const UserProfile = () => {
       console.log("loadportfolio [ERROR]", err);
       setLoading(false);
     }
+  }
+
+  const handleSetPortfolio = (portfolioData) => {
+    console.log(portfolioData);
+    setMutualFund({...portfolioData,actionType:"edit"});
+    setShow(true);
+
   }
 
 
@@ -182,7 +196,13 @@ const UserProfile = () => {
               <>
                 {portfolioData.map((singlePortfolio, i) => {
                   return (
-                    <SinglePortfolio key={i} portfolioType={key} portfolio={singlePortfolio} />
+                    <SinglePortfolio
+                      refProp={"profile"}
+                      setPortfolio={handleSetPortfolio}
+                      key={i}
+                      portfolioType={key}
+                      portfolio={singlePortfolio}
+                    />
 
                   )
                 })
@@ -212,10 +232,10 @@ const UserProfile = () => {
             {key === "mutualFunds" &&
               <>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Control name="name" type="text" placeholder="Enter MF Name" onChange={handleChange} />
+                  <Form.Control name="name" type="text" placeholder="Enter MF Name" onChange={handleChange} value={mutualFund?.name || ""}/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} />
+                  <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} value={mutualFund?.amount || 0}/>
                 </Form.Group>
               </>
             }

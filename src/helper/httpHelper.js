@@ -31,3 +31,19 @@ export const addPortfolio = async (portfolio) => {
         return err;
     }
 }
+
+export const editPortfolio = async (portfolio) => {
+    try {
+        const axiosRes = await axios({
+          method: "PATCH",
+          headers: { 'x-access-token': localStorage.getItem('token') },
+          url: `${BASE_URL}/api/portfolio/edit-portfolio`,
+          data: portfolio,
+        });
+        console.log("editPortfolio [SUCCESS]",axiosRes.data);
+        return axiosRes?.data;
+    } catch (err) {
+        console.log("editPortfolio [ERROR]", err);
+        return err;
+    }
+}
