@@ -21,6 +21,8 @@ const UserProfile = () => {
   const [portfolioData, setPortfolioData] = useState();
   const [key, setKey] = useState('mutualFunds');
 
+  
+
 
 
   const [mutualFund, setMutualFund] = useState({
@@ -107,7 +109,7 @@ const UserProfile = () => {
       if (key === "loans") reqData.loans = loan;
       console.log(reqData);
       serverRes = await addPortfolio(reqData);
-      
+
       serverRes = await editPortfolio(reqData);
 
       console.log(serverRes);

@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Loader from '../../components/loader/FullLoader';
 import { Econtext } from '../../context/Econtext';
+import brandLogo from '../../assets/mfinance.png'
 
 
 const Login = () => {
@@ -60,15 +61,20 @@ const Login = () => {
         <>
             <div className='login-page'>
                 <section>
+                    <div className='auth-logo'>
+                    {/* <img src={brandLogo} width="50px" height="35px"/> */}
                     <h2>Login</h2>
+                    </div>
+                    <hr/>
+               
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Control name="userid" type="text" placeholder="abc@xyz.com" onChange={handleChange} />
+                            <Form.Control className='shadow-none' name="userid" type="text" placeholder="abc@xyz.com" onChange={handleChange} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Control name="password" type="password" placeholder="*********" onChange={handleChange} />
+                            <Form.Control className='shadow-none' name="password" type="password" placeholder="*********" onChange={handleChange} />
                         </Form.Group>
-                        <Button variant="light" type="submit">
+                        <Button variant="dark" type="submit">
                             Submit
                         </Button>
                     </Form>

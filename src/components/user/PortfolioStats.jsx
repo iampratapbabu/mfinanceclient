@@ -6,6 +6,7 @@ import { BASE_URL } from "../../config";
 import toast from 'react-hot-toast';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import {currencyFmt}  from '../../helper/stringMethods';
 
 
 
@@ -75,13 +76,13 @@ const PortfolioStats = (props) => {
 
                             <div className='row'>
                                 <div className='col'>
-                                    <h6> Net Worth</h6><span className={getClassName(portfolioData?.netWorth)}>₹ {portfolioData?.netWorth}</span>
+                                    <h6> Net Worth</h6><span className={getClassName(portfolioData?.netWorth)}>₹ {currencyFmt(portfolioData?.netWorth)}</span>
                                 </div>
                                 <div className='col'>
-                                    <h6>Assets</h6><span>₹ {portfolioData?.totalAssets}</span>
+                                    <h6>Assets</h6><span>₹ {currencyFmt(portfolioData?.totalAssets)}</span>
                                 </div>
                                 <div className='col'>
-                                    <h6> Liablities</h6><span>₹ {portfolioData?.totalLiablites}</span>
+                                    <h6> Liablities</h6><span>₹ {currencyFmt(portfolioData?.totalLiablites)}</span>
                                 </div>
                             </div>
 

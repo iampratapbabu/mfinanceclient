@@ -61,7 +61,6 @@ const Header = () => {
         <>
             <header>
                 <Navbar className="navbar-custom">
-                    <Container>
                         <Navbar.Brand onClick={gotoHome}><h4>mFinance</h4></Navbar.Brand>
                         <Navbar.Collapse className="justify-content-end">
                             <Navbar.Text>
@@ -69,7 +68,6 @@ const Header = () => {
                                 <Button variant='light' onClick={() => setShow(true)}><BsPersonFill /></Button>
                             </Navbar.Text>
                         </Navbar.Collapse>
-                    </Container>
                 </Navbar>
 
                 <Offcanvas className="sidebar" show={show} placement="end" onHide={handleClose}>

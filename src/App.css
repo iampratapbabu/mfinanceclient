@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -7,6 +10,9 @@
   /* background-color: green; */
   display: flex;
   justify-content: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 
@@ -26,7 +32,10 @@
   color: #ffff;
   display: inline;
   margin: 2rem;
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
+
+
 }
 
 /* LOGIN PAGE */
@@ -43,15 +52,27 @@
   border-radius: 20px;
   border: 4px solid #ffff;
   padding: 10px;
-  box-shadow: 5px 10px 18px #ffff;
+  box-shadow: 5px 10px 18px darkslategray;
+  background-color: #ffff;
+  margin:0.5rem;
+}
+
+.auth-logo{
+  display: flex;
+  justify-content: center;
+
+}
+
+.auth-logo img{
+  margin-right: 1rem;
+
 }
 
 .login-page section h2 {
-  color: #ffff;
   text-align: center;
-  font-weight: 100;
+  font-weight: 400;
   margin-bottom: 1rem;
-
+  font-family: "Poppins", sans-serif;
 
 }
 
@@ -62,18 +83,21 @@
 .login-page p {
   margin: 5px;
   text-align: center;
-  color: #ffff;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: italic;
 
 }
 
 .login-page a {
-  color: yellow;
+  color: darkorange;
 }
 
 .login-page input {
   outline: 0;
   border-width: 0 0 3px;
-  border-color: yellow;
+  border-radius: 0;
+  border-color: blue;
 }
 
 .login-page input:focus {
@@ -91,20 +115,24 @@
 }
 
 .signup-page section {
+  margin:0.5rem;
   width: 30rem;
   padding: 1rem;
   text-align: center;
   border-radius: 20px;
   border: 2px solid #ffff;
   padding: 10px;
-  box-shadow: 5px 10px 18px #888888;
+  box-shadow: 5px 10px 18px darkslategray;
+  background-color: #ffff;
+
 }
 
 .signup-page section h2 {
-  color: #ffff;
 
   text-align: center;
-  font-weight: 100;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  font-family: "Poppins", sans-serif;
   margin-bottom: 1rem;
 
 }
@@ -115,23 +143,31 @@
 
 .signup-page p {
   margin: 5px;
-  color: #ffff;
-
   text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: italic;
 }
 
 .signup-page a {
-  color: yellow;
+  color: darkgoldenrod;
 }
 
 /*NAVBAR */
 
 .navbar-custom {
+  padding:0 1em;
   background-color: #008DDA;
   height: 3rem;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+
 }
 
 .navbar-custom h4 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
   color: aliceblue;
   cursor: pointer
 }
@@ -159,7 +195,6 @@
 
 .add-button {
   border-radius: 10%;
-  height: 50px;
   border: 2px solid #008DDA;
   /* box-shadow: 2px 2px 20px #888888; */
   background-color: #008DDA;
@@ -200,13 +235,24 @@
   padding: 10px;
   /* box-shadow: 2px 2px 20px #888888; */
   margin-bottom: 1rem;
+
+}
+
+.summary-card .details{
+  /* background-color: red; */
+  column-gap: 2rem;
+
 }
 
 .summary-card h6 {
-  font-weight: 300;
+  font-weight: 400;
+  color:#808080;
+  font-size: 0.8rem;
+
 }
 
 .summary-card span {
+  font-family: "Lato", sans-serif;
   font-weight: 500;
 }
 
@@ -298,11 +344,43 @@
 /*FOOTER*/
 
 footer {
+  background-color: rgb(255, 255, 255);
   text-align: center;
   color: #ffff;
+  padding: 1px;
+  color: rgb(1, 54, 69);
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: italic;
 }
 
 footer a {
-
-  color: #ffff;
+  color: rgb(1, 54, 69);
 }
+
+/*LOADER */
+.loader-block{
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+/*FONTS */
+.h5-title{
+  color:#808080;
+  text-transform: capitalize;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 1.3 rem;
+}
+
+.h3-title{
+  color:#636363;
+  text-transform: capitalize;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 1.3rem;
+}
+

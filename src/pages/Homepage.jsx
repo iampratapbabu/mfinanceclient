@@ -50,8 +50,7 @@ const HomePage = () => {
     <>
       <div className='home-page'>
         <div className='home-container'>
-          <h5>Hi, {user?.firstName} {user?.lastName}</h5>
-
+          <h5 className='h5-title'>Hi, {user?.firstName}</h5>
           <button className='add-button' onClick={handleShow}>
             +
           </button>
@@ -66,8 +65,8 @@ const HomePage = () => {
 
         <div className='summary-card'>
 
-          <h3>Assets</h3>
-          <div className='row'>
+          <h3 className='h3-title'>Assets</h3>
+          <div className='row details'>
             <div className='col'>
               <p>Saving Account</p>
               <h6>as on 13 April 2024</h6>
@@ -78,7 +77,7 @@ const HomePage = () => {
             </div>
           </div>
           <br />
-          <div className='row'>
+          <div className='row details'>
             <div className='col'>
               <p>Mutual Funds</p>
               <h6>as on 13 April 2024</h6>
@@ -90,8 +89,8 @@ const HomePage = () => {
           </div>
           <hr />
 
-          <h3>Liablities</h3>
-          <div className='row'>
+          <h3 className='h3-title'>Liablities</h3>
+          <div className='row details'>
             <div className='col'>
               <p>Personal Loan</p>
               <h6>as on 13 April 2024</h6>
@@ -119,7 +118,7 @@ const HomePage = () => {
         </div>
 
         <div className='summary-card'>
-          <h3>Expense <span>{"Rs 2,400"}</span></h3>
+          <h3 className='h3-title'>Expense <span>{"Rs 2,400"}</span></h3>
           <hr />
           <h6>Filter On</h6><span>Last Week</span>
           <hr />
