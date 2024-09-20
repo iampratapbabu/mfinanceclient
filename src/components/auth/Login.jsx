@@ -14,7 +14,6 @@ import brandLogo from '../../assets/mfinance.png'
 const Login = () => {
     const navigate = useNavigate();
 
-
     const { authState, authDispatch, login, } = useContext(Econtext);
     const { authError } = authState;
 
