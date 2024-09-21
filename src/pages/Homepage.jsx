@@ -66,113 +66,116 @@ const HomePage = () => {
         <div className='summary-card'>
 
           <h3 className='h3-title'>Assets</h3>
-          <div className='row details'>
-            <div className='col'>
+          <div className='box-end'>
+            <div className=''>
               <p>Saving Account</p>
               <h6>as on 13 April 2024</h6>
             </div>
-            <div className='col'>
+            <div className=''>
               <h6> Rs 8.63</h6>
               <button className='btn'>Detail</button>
             </div>
           </div>
           <br />
-          <div className='row details'>
-            <div className='col'>
+          <div className='box-end'>
+            <div className=''>
               <p>Mutual Funds</p>
               <h6>as on 13 April 2024</h6>
             </div>
-            <div className='col'>
+            <div className=''>
               <h6> Rs 1,75,000</h6>
               <button className='btn'>Detail</button>
             </div>
           </div>
-          <hr />
 
+
+        </div>
+
+
+        <div className='summary-card'>
           <h3 className='h3-title'>Liablities</h3>
-          <div className='row details'>
-            <div className='col'>
+          <div className='box-end'>
+            <div className=''>
               <p>Personal Loan</p>
               <h6>as on 13 April 2024</h6>
             </div>
-            <div className='col'>
+            <div className=''>
               <h6> Rs 54,677.84</h6>
               <button className='btn'>Detail</button>
             </div>
           </div>
           <br />
-          <div className='row'>
-            <div className='col'>
+          <div className='box-end'>
+            <div className=''>
               <p>Credit Card</p>
               <h6>as on 13 April 2024</h6>
             </div>
-            <div className='col'>
+            <div className=''>
               <h6> Rs 37,650.67</h6>
               <button className='btn'>Detail</button>
             </div>
           </div>
-          <hr />
 
 
         </div>
 
         <div className='summary-card'>
           <h3 className='h3-title'>Expense <span>{"Rs 2,400"}</span></h3>
-          <hr />
+          <br />
           <h6>Filter On</h6><span>Last Week</span>
           <hr />
-          <div className='row'>
+          <div className='box-end'>
 
-            <div className='col'>
+            <div className='box-end-col'>
               <h6>Category</h6><span>Fuel</span>
             </div>
-            <div className='col'>
+            <div className='box-end-col'>
               <h6> Spent</h6><span>₹ {"23"}</span>
             </div>
           </div>
           <hr />
 
-          <div className='row'>
+          <div className='box-end'>
 
-            <div className='col'>
+            <div className=''>
               <h6>Category</h6><span>Fuel</span>
             </div>
-            <div className='col'>
-              <h6> Spent</h6><span>₹ {"23"}</span>
-            </div>
-          </div>
-
-          <hr />
-
-          <div className='row'>
-
-            <div className='col'>
-              <h6>Category</h6><span>Fuel</span>
-            </div>
-            <div className='col'>
+            <div className=''>
               <h6> Spent</h6><span>₹ {"23"}</span>
             </div>
           </div>
 
           <hr />
 
-          <div className='row'>
+          <div className='box-end'>
 
-            <div className='col'>
+            <div className=''>
               <h6>Category</h6><span>Fuel</span>
             </div>
-            <div className='col'>
+            <div className=''>
+              <h6> Spent</h6><span>₹ {"23"}</span>
+            </div>
+          </div>
+
+          <hr />
+
+          <div className='box-end'>
+
+            <div className=''>
+              <h6>Category</h6><span>Fuel</span>
+            </div>
+            <div className=''>
               <h6> Spent</h6><span>₹ {"23"}</span>
             </div>
           </div>
           <hr />
 
-          <div className='row'>
+          <div className='box-end'>
     
-            <div className='col'>
+            <div className=''>
               <h6>Category</h6><span>Fuel</span>
             </div>
-            <div className='col'>
+            <div className=''>
               <h6> Spent</h6><span>₹ {"23"}</span>
             </div>
           </div>

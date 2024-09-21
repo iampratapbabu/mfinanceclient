@@ -6,6 +6,29 @@
   padding: 0;
 }
 
+/*SCROLL BAR */
+/* Style the scrollbar track */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+/* Style the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: #3498db; /* Scrollbar thumb color */
+  border-radius: 6px; /* Round the thumb corners */
+}
+
+/* Style the scrollbar track (background of the scrollbar) */
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Scrollbar track color */
+}
+
+/* Optional: Style the scrollbar corner */
+::-webkit-scrollbar-corner {
+  background-color: #f1f1f1; /* Scrollbar corner color */
+}
+
+
 .container-main {
   /* background-color: green; */
   display: flex;
@@ -194,7 +217,7 @@
 /*SIDEBAR*/
 
 .sidebar {
-  
+
 }
 
 .img-block {
@@ -218,6 +241,8 @@
   text-decoration: none;
   text-transform: uppercase;
 }
+
+
 
 
 
@@ -251,11 +276,18 @@
   color: #008DDA;
 }
 
+.portfolio-stats{
+  display: flex;
+  justify-content: space-between;
+}
+
 .single-summary-card {
   border-radius: 10px;
   padding: 10px;
   margin: 1rem 0;
   border: 1px solid lightgray;
+  /* background-color: red;
+  color:black */
 }
 
 .single-summary-card h6 {
@@ -279,8 +311,19 @@
 }
 
 .summary-card .details {
-  /* background-color: red; */
+  background-color: red;
+  justify-content: space-between;
   column-gap: 2rem;
+
+
+}
+
+.box-end{
+  display: flex;
+  justify-content: space-between;
+}
+
+.box-end-col {
 
 }
 
@@ -372,16 +415,23 @@ footer {
   font-style: italic;
 }
 
-footer a,
-h6 {
+footer a,h6 {
   /* color: rgb(1, 54, 69); */
-  color: #ffff;
+  /* color: #ffff; */
   text-decoration: none;
 }
 
 /*LOADER */
 .loader-block {
   height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.content-loader {
+ 
   display: flex;
   justify-content: center;
   align-items: center;

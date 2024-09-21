@@ -69,20 +69,21 @@ const AllPortfolio = () => {
 
                 <div className='single-summary-card'>
 
-                    <div className='row mb-3'>
-                        <div className='col'>
+                    <div className='box-end'>
+                        <div className=''>
                             <h6>Current</h6><span>₹ 2,00,000</span>
                         </div>
-                        <div className='col'>
+                        <div className=''>
                             <h6> Total Returns</h6><span>₹ 25,000</span>
                         </div>
                     </div>
-                    <div className='row mt-3'>
-                        <div className='col'>
+                    <br/>
+                    <div className='box-end'>
+                        <div className=''>
                             <h6>Invested</h6><span>₹ 1,75,000</span>
                         </div>
-                        <div className='col'>
-                            <h6> Reurn Percentage</h6><span> 23 %</span>
+                        <div className=''>
+                            <h6> Reurn(%)</h6><span> 23 %</span>
                         </div>
                     </div>
                 </div>

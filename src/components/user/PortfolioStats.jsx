@@ -73,14 +73,14 @@ const PortfolioStats = (props) => {
                     <>
                         <div className='summary-card'>
 
-                            <div className='row'>
-                                <div className='col'>
+                            <div className='portfolio-stats'>
+                                <div className=''>
                                     <h6> Net Worth</h6><span className={getClassName(portfolioData?.netWorth)}>₹ {currencyFmt(portfolioData?.netWorth)}</span>
                                 </div>
-                                <div className='col'>
+                                <div className=''>
                                     <h6>Assets</h6><span>₹ {currencyFmt(portfolioData?.totalAssets)}</span>
                                 </div>
-                                <div className='col'>
+                                <div className=''>
                                     <h6> Liablities</h6><span>₹ {currencyFmt(portfolioData?.totalLiablites)}</span>
                                 </div>
                             </div>
