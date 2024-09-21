@@ -100,8 +100,7 @@ const HomePage = () => {
               <button className='btn'>Detail</button>
             </div>
           </div>
-          <hr />
-
+          <br />
           <div className='row'>
             <div className='col'>
               <p>Credit Card</p>

@@ -37,18 +37,18 @@ const Login = () => {
             const res = await login(loginInfo);
             //console.log("login response",res);
             if (res.success) {
+                setLoading(false);
                 localStorage.setItem('token', res.resData.token);
                 authDispatch({ type: "LOGIN", payload: res.resData.user })
                 navigate('/');
                 toast.success("Welcome " + res.resData.user.firstName);
-                setLoading(false);
             } else {
                 setLoading(false);
                 console.log(res.message);
                 if (res.response) {
-                    toast.error(titleCase(res.response.data.message));
+                    toast.error(res.response.data.message);
                 } else {
-                    toast.error("Login Failed " + titleCase(res.message));
+                    toast.error("Login Failed " + res.message);
                 }
             }
         }
@@ -68,7 +68,7 @@ const Login = () => {
                
                     <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Control className='shadow-none' name="userid" type="text" placeholder="abc@xyz.com" onChange={handleChange} />
+                            <Form.Control className='shadow-none' name="userid" type="text" placeholder="abc@gmail.com" onChange={handleChange} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Control className='shadow-none' name="password" type="password" placeholder="*********" onChange={handleChange} />
@@ -88,4 +88,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Login;

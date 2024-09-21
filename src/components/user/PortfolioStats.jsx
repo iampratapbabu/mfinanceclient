@@ -20,7 +20,6 @@ const PortfolioStats = (props) => {
 
 
     useEffect(() => {
-        console.log("Portfolio stats started");
         console.log("props passed", props);
         loadPortfolio();
     }, [])

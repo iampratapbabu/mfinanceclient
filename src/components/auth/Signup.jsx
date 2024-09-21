@@ -65,29 +65,29 @@ const Signup = () => {
                        
                             <div className='col'>
                                 <Form.Group className="mb-3" controlId="formFirstName">
-                                    <Form.Control className='shadow-none' name="firstName" type="text" placeholder="Enter First Name" onChange={handleChange} />
+                                    <Form.Control className='shadow-none' name="firstName" type="text" placeholder="First Name" onChange={handleChange} />
                                 </Form.Group>
                             </div>
                             <div className='col'>
                                 <Form.Group className="mb-3" controlId="formLastName">
-                                    <Form.Control className='shadow-none' name="lastName" type="text" placeholder="Enter Last Name" onChange={handleChange} />
+                                    <Form.Control className='shadow-none' name="lastName" type="text" placeholder="Last Name" onChange={handleChange} />
                                 </Form.Group>
                             </div>
                     </div>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Control className='shadow-none' name="email" type="email" placeholder="Enter email" onChange={handleChange} />
+                        <Form.Control className='shadow-none' name="email" type="email" placeholder="Email" onChange={handleChange} />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicNumber">
-                        <Form.Control className='shadow-none' name="phone" type="text" placeholder="Enter Phone Number" onChange={handleChange} />
+                        <Form.Control className='shadow-none' name="phone" type="text" placeholder="Phone Number" onChange={handleChange} />
                         <Form.Text className="text-muted">
                         </Form.Text>
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Control className='shadow-none' name="password" type="password" placeholder="Enter Password" onChange={handleChange} />
+                        <Form.Control className='shadow-none' name="password" type="password" placeholder="Password" onChange={handleChange} />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
-                        <Form.Control className='shadow-none' name="confirmPassword" type="password" placeholder="Enter Confirm Password" onChange={handleChange} />
+                        <Form.Control className='shadow-none' name="confirmPassword" type="password" placeholder="Confirm Password" onChange={handleChange} />
                     </Form.Group>
                     <Form.Group controlId="formFile" className="mb-3">
                         <Form.Control className='shadow-none' name="userphoto" type="file" onChange={handleChange} />

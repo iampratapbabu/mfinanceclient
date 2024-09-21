@@ -89,9 +89,7 @@ const Header = () => {
                                 <Button variant='danger' onClick={logoutUi}>Log Out</Button>
                             </div>
 
-
                            
-
                         </div>
 
 
