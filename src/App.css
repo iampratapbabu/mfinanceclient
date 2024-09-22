@@ -9,23 +9,28 @@
 /*SCROLL BAR */
 /* Style the scrollbar track */
 ::-webkit-scrollbar {
-  width: 12px; /* Width of the scrollbar */
+  width: 12px;
+  /* Width of the scrollbar */
 }
 
 /* Style the scrollbar thumb */
 ::-webkit-scrollbar-thumb {
-  background-color: #3498db; /* Scrollbar thumb color */
-  border-radius: 6px; /* Round the thumb corners */
+  background-color: #3498db;
+  /* Scrollbar thumb color */
+  border-radius: 6px;
+  /* Round the thumb corners */
 }
 
 /* Style the scrollbar track (background of the scrollbar) */
 ::-webkit-scrollbar-track {
-  background-color: #f1f1f1; /* Scrollbar track color */
+  background-color: #f1f1f1;
+  /* Scrollbar track color */
 }
 
 /* Optional: Style the scrollbar corner */
 ::-webkit-scrollbar-corner {
-  background-color: #f1f1f1; /* Scrollbar corner color */
+  background-color: #f1f1f1;
+  /* Scrollbar corner color */
 }
 
 
@@ -216,9 +221,7 @@
 
 /*SIDEBAR*/
 
-.sidebar {
-
-}
+.sidebar {}
 
 .img-block {
   display: flex;
@@ -276,7 +279,7 @@
   color: #008DDA;
 }
 
-.portfolio-stats{
+.portfolio-stats {
   display: flex;
   justify-content: space-between;
 }
@@ -318,14 +321,12 @@
 
 }
 
-.box-end{
+.box-end {
   display: flex;
   justify-content: space-between;
 }
 
-.box-end-col {
-
-}
+.box-end-col {}
 
 .summary-card h6 {
   font-weight: 400;
@@ -364,6 +365,35 @@
   margin: 0.5rem;
 }
 
+.portfolio-detail{
+  display: flex;
+  justify-content: space-between;
+}
+
+.portfolio-detail h6{
+  font-weight: 300;
+  font-size: 0.9rem;
+  /* background-color: red; */
+}
+
+.portfolio-detail span{
+  color:#006eff;
+  /* background-color:green; */
+}
+
+.portfolio-button{
+  display: flex;
+  /* background-color:green; */
+}
+
+.portfolio-button button{
+  margin: 0 1rem;
+
+}
+
+
+
+
 /* sidebar */
 .sidebar {
   /* height:200px; */
@@ -387,6 +417,12 @@
   color: #008DDA;
   margin: 2px;
 }
+
+.nav-tabs {
+  /* background-color: red; */
+  font-weight: 6100;
+}
+
 
 .nav-tabs .nav-link.active {
   background-color: #008DDA;
@@ -415,7 +451,8 @@ footer {
   font-style: italic;
 }
 
-footer a,h6 {
+footer a,
+h6 {
   /* color: rgb(1, 54, 69); */
   /* color: #ffff; */
   text-decoration: none;
@@ -431,7 +468,7 @@ footer a,h6 {
 }
 
 .content-loader {
- 
+
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,18 +1,31 @@
 import React, { useEffect } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
+import { deletePortfolio } from '../../helper/httpHelper';
+import toast from 'react-hot-toast';
 
 
 
-const SinglePortfolio = ({ refProp,setPortfolio, portfolio, portfolioType, key }) => {
+
+
+
+const SinglePortfolio = ({ refProp, setPortfolio, portfolio, portfolioType, key }) => {
 
     useEffect(() => {
         //console.log(portfolio);
         //console.log(props);
     }, []);
 
-    const handleEdit = (portfolioPaylod) =>{
-        setPortfolio(portfolioPaylod)
+    const handleEdit = (portfolioPaylod) => {
+        console.log(portfolioPaylod);
+        setPortfolio(portfolioPaylod,'edit')
+    }
+
+    const handleDelete = async(portfolioPaylod) =>{
+        const serverRes = await deletePortfolio(portfolioPaylod?._id, portfolioType);
+        if (serverRes.success) {
+            toast.success(serverRes.message);
+        }
     }
 
 
@@ -30,15 +43,42 @@ const SinglePortfolio = ({ refProp,setPortfolio, portfolio, portfolioType, key }
 
                                 <Accordion.Body>
                                     <div className='portfolio-detail'>
-                                        <h6>Name: <span>{portfolio?.name}</span></h6>
-                                        <h6>Invested Amount: ₹ <span>{portfolio?.amount}</span></h6>
-                                        <h6>Investment Type: <span>{portfolio?.investmentType}</span></h6>
-                                        <h6>SIP Date: <span>{portfolio?.dateOfSip}</span></h6>
+                                        <div className='row'>
+                                            <div className='col'>
+                                                <h6>Invested Amount:</h6>
+                                            </div>
+                                            <div className='col'>
+                                                <span>₹{portfolio?.amount}</span>
+                                            </div>
+
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <h6>Investment Type:</h6>
+                                                </div>
+                                                <div className='col'>
+                                                    <span>{portfolio?.investmentType}</span>
+                                                </div>
+                                            </div>
+
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <h6>SIP Date:</h6>
+                                                </div>
+                                                <div className='col'>
+                                                    <span>{portfolio?.dateOfSip?.toLocaleString()}</span>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                        </div>
+
+                                    </div>
+                                    <div className='portfolio-button'>
+
                                         {
                                             refProp == "profile" &&
                                             <>
-                                                <Button variant='warning' onClick={()=>handleEdit(portfolio)}>Edit</Button>
-                                                <Button variant='danger'>Delete</Button>
+                                                <Button variant='warning' onClick={() => handleEdit(portfolio)}>Edit</Button>
+                                                <Button variant='danger' onClick={() => handleDelete(portfolio)}>Delete</Button>
                                             </>
                                         }
                                     </div>
@@ -58,8 +98,8 @@ const SinglePortfolio = ({ refProp,setPortfolio, portfolio, portfolioType, key }
                                         {
                                             refProp == "profile" &&
                                             <>
-                                                <Button variant='warning'>Edit</Button>
-                                                <Button variant='danger'>Delete</Button>
+                                                <Button variant='warning' onClick={() => handleEdit(portfolio)}>Edit</Button>
+                                                <Button variant='danger' onClick={() => handleDelete(portfolio)}>Delete</Button>
                                             </>
                                         }
                                     </div>
@@ -79,8 +119,8 @@ const SinglePortfolio = ({ refProp,setPortfolio, portfolio, portfolioType, key }
                                         {
                                             refProp == "profile" &&
                                             <>
-                                                <Button variant='warning'>Edit</Button>
-                                                <Button variant='danger'>Delete</Button>
+                                                <Button variant='warning' onClick={() => handleEdit(portfolio)}>Edit</Button>
+                                                <Button variant='danger' onClick={() => handleDelete(portfolio)}>Delete</Button>
                                             </>
                                         }
                                     </div>
@@ -101,8 +141,8 @@ const SinglePortfolio = ({ refProp,setPortfolio, portfolio, portfolioType, key }
                                         {
                                             refProp == "profile" &&
                                             <>
-                                                <Button variant='warning'>Edit</Button>
-                                                <Button variant='danger'>Delete</Button>
+                                                <Button variant='warning' onClick={() => handleEdit(portfolio)}>Edit</Button>
+                                                <Button variant='danger' onClick={() => handleDelete(portfolio)}>Delete</Button>
                                             </>
                                         }
                                     </div>
@@ -123,8 +163,8 @@ const SinglePortfolio = ({ refProp,setPortfolio, portfolio, portfolioType, key }
                                         {
                                             refProp == "profile" &&
                                             <>
-                                                <Button variant='warning'>Edit</Button>
-                                                <Button variant='danger'>Delete</Button>
+                                                <Button variant='warning' onClick={() => handleEdit(portfolio)}>Edit</Button>
+                                                <Button variant='danger' onClick={() => handleDelete(portfolio)}>Delete</Button>
                                             </>
                                         }
                                     </div>

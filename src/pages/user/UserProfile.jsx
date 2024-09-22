@@ -19,16 +19,16 @@ const UserProfile = () => {
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const [portfolioData, setPortfolioData] = useState();
-  const [key, setKey] = useState('mutualFunds');
+  const [key, setKey] = useState('');
 
-  
+
 
 
 
   const [mutualFund, setMutualFund] = useState({
     name: "",
     amount: 0,
-    actionType:"create",
+    actionType: "create",
   });
 
   const [stock, setStock] = useState({
@@ -80,8 +80,6 @@ const UserProfile = () => {
   }
 
   const handleChange = (e) => {
-
-
     if (key === "mutualFunds") setMutualFund({ ...mutualFund, [e.target.name]: e.target.value });
     if (key === "stocks") setStock({ ...stock, [e.target.name]: e.target.value });
     if (key === "bankAccounts") setBankAccount({ ...bankAccount, [e.target.name]: e.target.value });
@@ -94,7 +92,7 @@ const UserProfile = () => {
     addEditPortfolio();
   }
 
- 
+
 
   const addEditPortfolio = async () => {
     try {
@@ -154,7 +152,7 @@ const UserProfile = () => {
 
   const handleSetPortfolio = (portfolioData) => {
     console.log(portfolioData);
-    setMutualFund({...portfolioData,actionType:"edit"});
+    setMutualFund({ ...portfolioData, actionType: "edit" });
     setShow(true);
 
   }
@@ -164,154 +162,7 @@ const UserProfile = () => {
   return (
     <>
 
-      <div className='home-page'>
-
-        <div className='tabs'>
-          <Tabs
-            defaultActiveKey="mutualFunds"
-            id="fill-tab-example"
-            className="mb-3"
-            fill
-            onSelect={(k) => handleTabKey(k)}
-          >
-
-            <Tab eventKey="mutualFunds" title="Mutual Funds"></Tab>
-            <Tab eventKey="stocks" title="Stocks"></Tab>
-            <Tab eventKey="bankAccounts" title="Accounts"></Tab>
-            <Tab eventKey="loans" title="Loans"></Tab>
-            <Tab eventKey="expenses" title="Expenses"></Tab>
-
-          </Tabs>
-
-          <div className='single-portfolio'>
-            <div className="d-grid gap-2 mb-3">
-              <Button variant="info" size="lg" onClick={() => handleShow('mutualFunds')}>
-                + Add {key}
-              </Button>
-            </div>
-
-          </div>
-
-          {loading ? <ContentLoader /> : null}
-          {
-            portfolioData && portfolioData.length > 0 ?
-              <>
-                {portfolioData.map((singlePortfolio, i) => {
-                  return (
-                    <SinglePortfolio
-                      refProp={"profile"}
-                      setPortfolio={handleSetPortfolio}
-                      key={i}
-                      portfolioType={key}
-                      portfolio={singlePortfolio}
-                    />
-
-                  )
-                })
-                }
-
-              </>
-              :
-              <>
-                <p>No Data Found</p>
-              </>
-          }
-
-
-        </div>
-
-
-
-
-      </div>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Add {key}</Modal.Title>
-        </Modal.Header>
-        <Form onSubmit={handleSubmit}>
-          <Modal.Body>
-            {key === "mutualFunds" &&
-              <>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Control name="name" type="text" placeholder="Enter MF Name" onChange={handleChange} value={mutualFund?.name || ""}/>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} value={mutualFund?.amount || 0}/>
-                </Form.Group>
-              </>
-            }
-
-            {key === "stocks" &&
-              <>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Control name="name" type="text" placeholder="Enter Stocks Name" onChange={handleChange} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} />
-                </Form.Group>
-              </>
-            }
-
-            {key === "bankAccounts" &&
-              <>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Control name="name" type="text" placeholder="Enter Bank Name" onChange={handleChange} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Control name="accountHolderName" type="text" placeholder="Enter Account Holder Name" onChange={handleChange} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Control name="accountNumber" type="text" placeholder="Enter Account Number" onChange={handleChange} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Control name="ifscCode" type="text" placeholder="Enter IFSC Code" onChange={handleChange} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Control name="currentBalance" type="number" placeholder="Enter Current Balance" onChange={handleChange} />
-                </Form.Group>
-              </>
-            }
-
-            {key === "expenses" &&
-              <>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Control name="expenseType" type="text" placeholder="Enter Expense Type" onChange={handleChange} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} />
-                </Form.Group>
-              </>
-            }
-
-            {key === "loans" &&
-              <>
-
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Control name="amount" type="number" placeholder="Enter Loan Amount" onChange={handleChange} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Control name="loanType" type="text" placeholder="Enter Loan Type" onChange={handleChange} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Control name="remarks" type="text" placeholder="Enter Remarks" onChange={handleChange} />
-                </Form.Group>
-              </>
-            }
-
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="success" type="submit">
-              Submit
-            </Button>
-          </Modal.Footer>
-        </Form>
-      </Modal>
-
-
+    <p>User Profile</p>
 
 
     </>

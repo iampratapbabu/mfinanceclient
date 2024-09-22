@@ -37,6 +37,7 @@ const PortfolioStats = (props) => {
             if (axiosRes.data.success) {
                 setLoading(false);
                 setPortfolioData(axiosRes.data.resData)
+                setDivSection("");
             } else {
                 setLoading(false);
 
@@ -66,7 +67,7 @@ const PortfolioStats = (props) => {
             {
                 divSection === "error" ?
                     <>
-                        <p>Portfolio loading err </p>
+                        <p>Portfolio Not Loaded </p>
                         <Button onClick={loadPortfolio}>Try Again</Button>
                     </>
                     :

@@ -16,12 +16,12 @@ export const createPortfolio = (portfolioData) =>{
 };
 
 
-export const addPortfolio = async (portfolio) => {
+export const addPortfolio = async (portfolio,portfolioType) => {
     try {
         const axiosRes = await axios({
           method: "POST",
           headers: { 'x-access-token': localStorage.getItem('token') },
-          url: `${BASE_URL}/api/portfolio`,
+          url: `${BASE_URL}/api/portfolio?portfolioType=${portfolioType}`,
           data: portfolio,
         });
         console.log("addPortfolio [SUCCESS]",axiosRes.data);
@@ -39,6 +39,21 @@ export const editPortfolio = async (portfolio) => {
           headers: { 'x-access-token': localStorage.getItem('token') },
           url: `${BASE_URL}/api/portfolio/edit-portfolio`,
           data: portfolio,
+        });
+        console.log("editPortfolio [SUCCESS]",axiosRes.data);
+        return axiosRes?.data;
+    } catch (err) {
+        console.log("editPortfolio [ERROR]", err);
+        return err;
+    }
+}
+
+export const deletePortfolio = async (pfId,pfType) => {
+    try {
+        const axiosRes = await axios({
+          method: "DELETE",
+          headers: { 'x-access-token': localStorage.getItem('token') },
+          url: `${BASE_URL}/api/portfolio/single/${pfId}?portfolioType=${pfType}`,
         });
         console.log("editPortfolio [SUCCESS]",axiosRes.data);
         return axiosRes?.data;

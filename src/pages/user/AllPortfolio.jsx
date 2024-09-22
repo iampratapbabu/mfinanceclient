@@ -1,23 +1,150 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from "axios";
-import { BASE_URL } from "../../config";
+import React, { useEffect, useState } from 'react';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+import Accordion from 'react-bootstrap/Accordion';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import { addPortfolio, createPortfolio, deletePortfolio, editPortfolio } from '../../helper/httpHelper';
 import Form from 'react-bootstrap/Form';
-import ContentLoader from '../../components/loader/ContentLoader';
+import axios from 'axios';
+import { BASE_URL } from '../../config';
 import SinglePortfolio from '../../components/user/SinglePortfolio';
+import ContentLoader from '../../components/loader/ContentLoader';
+import toast from 'react-hot-toast';
+
 
 
 
 
 const AllPortfolio = () => {
 
+    const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [portfolioData, setPortfolioData] = useState();
-    const [portfolioType, setPortfolioType] = useState();
+    const [portfolioData, setPortfolioData] = useState([]);
+    const [key, setKey] = useState('mutualFunds');
+    const [btnAction, setBtnAction] = useState('');
+    const [reloadEvent, setPageReloadEvent] = useState(false)
 
+
+
+
+
+    const [mutualFund, setMutualFund] = useState({
+        name: "",
+        amount: 0,
+    });
+
+    const [stock, setStock] = useState({
+        name: "",
+        amount: 0
+    });
+
+    const [bankAccount, setBankAccount] = useState({
+        name: "",
+        accountHolderName: "",
+        accountNumber: "",
+        ifscCode: "",
+        amount: 0
+    });
+
+    const [expense, setExpense] = useState({
+        expenseType: "",
+        amount: 0
+    });
+
+    const [loan, setLoan] = useState({
+        amount: 0,
+        loanType: "",
+        remarks: "",
+    });
+
+
+
+    useEffect(() => {
+        loadPortfolio(key);
+    }, [show])
+
+    const handleClose = async () => setShow(false);
+
+    const handleShow = (setAction) => {
+        setBtnAction(setAction);
+        setShow(true);
+    }
+
+
+    const clickMe = async () => {
+        try {
+            const res = await createPortfolio(2);
+            console.log(res);
+
+        } catch (err) {
+            console.log(err);
+        }
+
+    }
+
+    const handleChange = (e) => {
+        if (key === "mutualFunds") setMutualFund({ ...mutualFund, [e.target.name]: e.target.value });
+        if (key === "stocks") setStock({ ...stock, [e.target.name]: e.target.value });
+        if (key === "bankAccounts") setBankAccount({ ...bankAccount, [e.target.name]: e.target.value });
+        if (key === "expenses") setExpense({ ...expense, [e.target.name]: e.target.value });
+        if (key === "loans") setLoan({ ...loan, [e.target.name]: e.target.value });
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log("handle submit rns");
+        if (btnAction !== "") {
+            addEditPortfolio();
+
+        }
+    }
+
+
+
+    const addEditPortfolio = async () => {
+        try {
+            let serverRes;
+            let reqData = {};
+            //reqData.portfolioType = data;
+
+            if (key === "mutualFunds") reqData.mutualFunds = mutualFund;
+            if (key === "stocks") reqData.stocks = stock;
+            if (key === "bankAccounts") reqData.bankAccounts = bankAccount;
+            if (key === "expenses") reqData.expenses = expense;
+            if (key === "loans") reqData.loans = loan;
+            // console.log(reqData);
+            if (btnAction == "add") {
+                serverRes = await addPortfolio(reqData, key);
+                // console.log(serverRes);
+                if (serverRes.success) {
+                    toast.success(serverRes.message);
+                }
+
+            } else if (btnAction == "edit") {
+                serverRes = await editPortfolio(reqData);
+                if (serverRes.success) {
+                    toast.success(serverRes.message);
+                }
+
+            }
+            setShow(false);
+
+
+            console.log(serverRes);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
+    const handleTabKey = (tabKey) => {
+        setKey(tabKey);
+        loadPortfolio(tabKey);
+    }
 
     const loadPortfolio = async (ptype) => {
         try {
+            console.log("load portfolio runs with value", ptype);
             setLoading(true);
             const axiosRes = await axios({
                 method: "POST",
@@ -29,11 +156,7 @@ const AllPortfolio = () => {
             if (axiosRes.data.success) {
                 setLoading(false);
                 const { resData } = axiosRes.data;
-                if (resData.portfolioType === "mutualFunds") setPortfolioData(resData.userMutualFunds);
-                if (resData.portfolioType === "stocks") setPortfolioData(resData.userStocks);
-                if (resData.portfolioType === "bankAccounts") setPortfolioData(resData.userBankAccounts);
-                if (resData.portfolioType === "expenses") setPortfolioData(resData.userExpenses);
-                if (resData.portfolioType === "loans") setPortfolioData(resData.userLoans);
+                setPortfolioData(resData);
             } else {
                 setLoading(false);
 
@@ -44,31 +167,25 @@ const AllPortfolio = () => {
         }
     }
 
-    const selectPortfolioType = (e) => {
-        console.log(e.target.name, e.target.value);
-        loadPortfolio(e.target.value);
-        setPortfolioType(e.target.value);
+    const handleSetPortfolio = async (portfolioData, handleBtnPortfolio) => {
+        setBtnAction(handleBtnPortfolio);
+        if (key === "mutualFunds") setMutualFund(portfolioData);
+        if (key === "stocks") setStock(portfolioData);
+        if (key === "bankAccounts") setBankAccount(portfolioData);
+        if (key === "expenses") setExpense(portfolioData);
+        if (key === "loans") setLoan(portfolioData);
+        setShow(true);
+
+
     }
 
- 
+
 
     return (
         <>
             <div className='all-portfolio'>
 
-
-                <Form.Select onChange={selectPortfolioType} name="portfolioType" aria-label="Default select example">
-                    <option>Select Portfolio Type</option>
-                    <option value="mutualFunds">Mutual Funds</option>
-                    <option value="stocks">Stocks</option>
-                    <option value="bankAccounts">Bank Accounts</option>
-                    <option value="expenses">Expenses</option>
-                    <option value="loans">Loans</option>
-                </Form.Select>
-                {/* <h3>{portfolioType}</h3> */}
-
                 <div className='single-summary-card'>
-
                     <div className='box-end'>
                         <div className=''>
                             <h6>Current</h6><span>₹ 2,00,000</span>
@@ -77,7 +194,7 @@ const AllPortfolio = () => {
                             <h6> Total Returns</h6><span>₹ 25,000</span>
                         </div>
                     </div>
-                    <br/>
+                    <br />
                     <div className='box-end'>
                         <div className=''>
                             <h6>Invested</h6><span>₹ 1,75,000</span>
@@ -87,34 +204,154 @@ const AllPortfolio = () => {
                         </div>
                     </div>
                 </div>
-                {loading ? <ContentLoader /> : null}
-                {
-                    portfolioData && portfolioData.length > 0 ?
-                        <>
-                            {portfolioData.map((singlePortfolio, i) => {
-                                return (
-                                    <SinglePortfolio
-                                        refProp={"allPortfolio"}
-                                        setPortfolio={null}
-                                        key={i}
-                                        portfolioType={portfolioType}
-                                        portfolio={singlePortfolio}
-                                    />
 
-                                )
-                            })
-                            }
+                <div className='tabs'>
+                    <Tabs
+                        defaultActiveKey="mutualFunds"
+                        id="fill-tab-example"
+                        className="mb-3"
+                        fill
+                        onSelect={(k) => handleTabKey(k)}
+                    >
+                        <Tab eventKey="mutualFunds" title="Mutual Funds"></Tab>
+                        <Tab eventKey="stocks" title="Stocks"></Tab>
+                        <Tab eventKey="bankAccounts" title="Accounts"></Tab>
+                        <Tab eventKey="loans" title="Loans"></Tab>
+                        <Tab eventKey="expenses" title="Expenses"></Tab>
 
-                        </>
-                        :
-                        <>
-                            <p>No Data Found</p>
-                        </>
-                }
+                    </Tabs>
+
+                    <div className="d-grid gap-2 mb-3">
+                        <Button variant="info" size="lg" onClick={() => handleShow('add')}>
+                            + ADD {key?.toUpperCase()}
+                        </Button>
+                    </div>
+
+
+                    {loading ? <ContentLoader /> : null}
+                    {
+                        portfolioData && portfolioData.length > 0 ?
+                            <>
+                                {portfolioData.map((singlePortfolio, i) => {
+                                    return (
+                                        <SinglePortfolio
+                                            refProp={"profile"}
+                                            setPortfolio={handleSetPortfolio}
+
+                                            portfolioType={key}
+                                            portfolio={singlePortfolio}
+                                            key={i}
+                                        />
+
+                                    )
+                                })
+                                }
+
+                            </>
+                            :
+                            <>
+                                <p>No Data Found</p>
+                            </>
+                    }
+
+
+                </div>
+
             </div>
-        </>
 
+
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>ADD {key?.toUpperCase()}</Modal.Title>
+                </Modal.Header>
+                <Form onSubmit={handleSubmit}>
+                    <Modal.Body>
+                        {key === "mutualFunds" &&
+                            <>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Control name="name" type="text" placeholder="Enter MF Name" onChange={handleChange} value={mutualFund?.name || ""} />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formBasicPassword">
+                                    <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} value={mutualFund?.amount || 0} />
+                                </Form.Group>
+                            </>
+                        }
+
+                        {key === "stocks" &&
+                            <>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Control name="name" type="text" placeholder="Enter Stocks Name" onChange={handleChange} value={stock?.name || ""} />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formBasicPassword">
+                                    <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} value={stock?.amount || ""} />
+                                </Form.Group>
+                            </>
+                        }
+
+                        {key === "bankAccounts" &&
+                            <>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Control name="name" type="text" placeholder="Enter Bank Name" onChange={handleChange} value={bankAccount?.name || ""} />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formBasicPassword">
+                                    <Form.Control name="accountHolderName" type="text" placeholder="Enter Account Holder Name" onChange={handleChange} value={bankAccount?.accountHolderName || ""} />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formBasicPassword">
+                                    <Form.Control name="accountNumber" type="text" placeholder="Enter Account Number" onChange={handleChange} value={bankAccount?.accountNumber || ""} />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formBasicPassword">
+                                    <Form.Control name="ifscCode" type="text" placeholder="Enter IFSC Code" onChange={handleChange} value={bankAccount?.ifscCode || ""} />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formBasicPassword">
+                                    <Form.Control name="currentBalance" type="number" placeholder="Enter Current Balance" onChange={handleChange} value={bankAccount?.currentBalance || ""} />
+                                </Form.Group>
+                            </>
+                        }
+
+                        {key === "expenses" &&
+                            <>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Control name="expenseType" type="text" placeholder="Enter Expense Type" onChange={handleChange} value={expense?.expenseType || ""} />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formBasicPassword">
+                                    <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} value={expense?.amount || ""} />
+                                </Form.Group>
+                            </>
+                        }
+
+                        {key === "loans" &&
+                            <>
+
+                                <Form.Group className="mb-3" controlId="formBasicPassword">
+                                    <Form.Control name="amount" type="number" placeholder="Enter Loan Amount" onChange={handleChange} value={loan?.amount || ""} />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Control name="loanType" type="text" placeholder="Enter Loan Type" onChange={handleChange} value={loan?.loanType || ""} />
+                                </Form.Group>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Control name="remarks" type="text" placeholder="Enter Remarks" onChange={handleChange} value={loan?.remarks || ""} />
+                                </Form.Group>
+                            </>
+                        }
+
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Close
+                        </Button>
+                        <Button variant="success" type="submit">
+                            Submit
+                        </Button>
+                    </Modal.Footer>
+                </Form>
+            </Modal>
+
+
+
+
+        </>
     )
 }
 
-export default AllPortfolio
+export default AllPortfolio;

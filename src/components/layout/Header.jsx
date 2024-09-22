@@ -60,7 +60,7 @@ const Header = () => {
     return (
         <>
             <header>
-                <Navbar className="navbar-custom">
+                <Navbar className="navbar-custom" fixed="top">
                         <Navbar.Brand onClick={gotoHome}><h4>mFinance</h4></Navbar.Brand>
                         <Navbar.Collapse className="justify-content-end">
                             <Navbar.Text>

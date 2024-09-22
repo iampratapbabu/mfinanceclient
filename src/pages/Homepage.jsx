@@ -120,7 +120,7 @@ const HomePage = () => {
         </div>
 
         <div className='summary-card'>
-          <h3 className='h3-title'>Expense <span>{"Rs 2,400"}</span></h3>
+          <h3 className='h3-title'>Expense</h3>
           <br />
           <h6>Filter On</h6><span>Last Week</span>
           <hr />
