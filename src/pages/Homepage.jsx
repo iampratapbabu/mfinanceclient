@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Econtext } from '../context/Econtext';
 import PortfolioStats from '../components/user/PortfolioStats';
 import { Link } from 'react-router-dom';
@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { addPortfolio } from '../helper/httpHelper';
 import Form from 'react-bootstrap/Form';
+import toast from 'react-hot-toast';
 
 const HomePage = () => {
   const { authState } = useContext(Econtext);
@@ -18,6 +19,10 @@ const HomePage = () => {
     expenseType: "",
     amount: 0
   });
+
+  useEffect(()=>{
+
+  },[show])
 
 
   const funToRun = (param) => {
@@ -39,12 +44,16 @@ const HomePage = () => {
 
       reqData.expenses = expense;
       console.log(reqData);
-      const serverRes = await addPortfolio(reqData);
+      const serverRes = await addPortfolio(reqData,"expenses");
+      toast.success(serverRes.message);
+      setShow(false);
       console.log(serverRes);
     } catch (err) {
       console.log(err);
     }
   }
+
+  
 
   return (
     <>
@@ -57,11 +66,7 @@ const HomePage = () => {
 
         </div>
 
-
-
         <PortfolioStats custom={"this is custom prop"} funProp={funToRun} />
-
-
 
         <div className='summary-card'>
 

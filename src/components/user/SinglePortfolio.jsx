@@ -18,10 +18,10 @@ const SinglePortfolio = ({ refProp, setPortfolio, portfolio, portfolioType, key 
 
     const handleEdit = (portfolioPaylod) => {
         console.log(portfolioPaylod);
-        setPortfolio(portfolioPaylod,'edit')
+        setPortfolio(portfolioPaylod, 'edit')
     }
 
-    const handleDelete = async(portfolioPaylod) =>{
+    const handleDelete = async (portfolioPaylod) => {
         const serverRes = await deletePortfolio(portfolioPaylod?._id, portfolioType);
         if (serverRes.success) {
             toast.success(serverRes.message);
@@ -92,9 +92,30 @@ const SinglePortfolio = ({ refProp, setPortfolio, portfolio, portfolioType, key 
                                 <Accordion.Header>{portfolio?.name}</Accordion.Header>
                                 <Accordion.Body>
                                     <div className='portfolio-detail'>
-                                        <h6>Name: <span>{portfolio?.name}</span></h6>
-                                        <h6>Invested Amount: ₹ <span>{portfolio?.amount}</span></h6>
-                                        <h6>Purchased Date: <span>{portfolio?.dateOfInvestment}</span></h6>
+                                        <div className='row'>
+                                            <div className='col'>
+                                                <h6>Invested Amount:</h6>
+                                            </div>
+                                            <div className='col'>
+                                                <span>₹{portfolio?.amount}</span>
+                                            </div>
+
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <h6>Purchased Date:</h6>
+                                                </div>
+                                                <div className='col'>
+                                                    <span>{portfolio?.dateOfInvestment}</span>
+                                                </div>
+                                            </div>
+
+
+                                            <hr />
+                                        </div>
+
+                                    </div>
+                                    <div className='portfolio-button'>
+
                                         {
                                             refProp == "profile" &&
                                             <>
@@ -103,6 +124,7 @@ const SinglePortfolio = ({ refProp, setPortfolio, portfolio, portfolioType, key 
                                             </>
                                         }
                                     </div>
+
                                 </Accordion.Body>
 
                             </>
@@ -112,10 +134,49 @@ const SinglePortfolio = ({ refProp, setPortfolio, portfolio, portfolioType, key 
                             <>
                                 <Accordion.Header>{portfolio?.name}</Accordion.Header>
                                 <Accordion.Body>
+
+
                                     <div className='portfolio-detail'>
-                                        <h6>Name: <span>{portfolio?.name}</span></h6>
-                                        <h6>Current Balance: ₹ <span>{portfolio?.currentBalance}</span></h6>
-                                        <h6>IFSC Code: <span>{portfolio?.ifscCode}</span></h6>
+                                        <div className='row'>
+                                            <div className='col'>
+                                                <h6>Account Number:</h6>
+                                            </div>
+                                            <div className='col'>
+                                                <span>{portfolio?.accountNumber}</span>
+                                            </div>
+
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <h6>A/C Holder's Name:</h6>
+                                                </div>
+                                                <div className='col'>
+                                                    <span>{portfolio?.accountHolderName}</span>
+                                                </div>
+                                            </div>
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <h6>Current Balance:</h6>
+                                                </div>
+                                                <div className='col'>
+                                                    <span>₹{portfolio?.currentBalance}</span>
+                                                </div>
+
+                                            </div>
+
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <h6>IFSC Code:</h6>
+                                                </div>
+                                                <div className='col'>
+                                                    <span>{portfolio?.ifscCode}</span>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                        </div>
+
+                                    </div>
+                                    <div className='portfolio-button'>
+
                                         {
                                             refProp == "profile" &&
                                             <>
@@ -124,6 +185,7 @@ const SinglePortfolio = ({ refProp, setPortfolio, portfolio, portfolioType, key 
                                             </>
                                         }
                                     </div>
+
                                 </Accordion.Body>
 
                             </>
@@ -134,10 +196,40 @@ const SinglePortfolio = ({ refProp, setPortfolio, portfolio, portfolioType, key 
                             <>
                                 <Accordion.Header>{portfolio?.expenseType}</Accordion.Header>
                                 <Accordion.Body>
+
                                     <div className='portfolio-detail'>
-                                        <h6>Expense Type: <span>{portfolio?.expenseType}</span></h6>
-                                        <h6>Amount: ₹ <span>{portfolio?.amount}</span></h6>
-                                        <h6>Transaction Date: <span>{portfolio?.createdAt}</span></h6>
+                                        <div className='row'>
+                                            <div className='col'>
+                                                <h6>Expense Type:</h6>
+                                            </div>
+                                            <div className='col'>
+                                                <span>{portfolio?.expenseType}</span>
+                                            </div>
+
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <h6>Amount:</h6>
+                                                </div>
+                                                <div className='col'>
+                                                    <span>₹{portfolio?.amount}</span>
+                                                </div>
+                                            </div>
+
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <h6>Transaction Date:</h6>
+                                                </div>
+                                                <div className='col'>
+                                                    <span>₹{portfolio?.createdAt}</span>
+                                                </div>
+                                            </div>
+
+                                            <hr />
+                                        </div>
+
+                                    </div>
+                                    <div className='portfolio-button'>
+
                                         {
                                             refProp == "profile" &&
                                             <>
@@ -155,11 +247,41 @@ const SinglePortfolio = ({ refProp, setPortfolio, portfolio, portfolioType, key 
                             <>
                                 <Accordion.Header>{portfolio?.remarks}</Accordion.Header>
                                 <Accordion.Body>
+
+
                                     <div className='portfolio-detail'>
-                                        <h6>Title: <span>{portfolio?.remarks}</span></h6>
-                                        <h6>Loan Amount: ₹ <span>{portfolio?.amount}</span></h6>
-                                        <h6>Loan Type: <span>{portfolio?.loanType}</span></h6>
-                                        <h6>Date: <span>{portfolio?.createdAt}</span></h6>
+                                        <div className='row'>
+                                            <div className='col'>
+                                                <h6>Loan Amount:</h6>
+                                            </div>
+                                            <div className='col'>
+                                                <span>₹{portfolio?.amount}</span>
+                                            </div>
+
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <h6>Loan Type:</h6>
+                                                </div>
+                                                <div className='col'>
+                                                    <span>{portfolio?.loanType}</span>
+                                                </div>
+                                            </div>
+
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <h6>Date:</h6>
+                                                </div>
+                                                <div className='col'>
+                                                    <span>{portfolio?.createdAt}</span>
+                                                </div>
+                                            </div>
+
+                                            <hr />
+                                        </div>
+
+                                    </div>
+                                    <div className='portfolio-button'>
+
                                         {
                                             refProp == "profile" &&
                                             <>
@@ -168,6 +290,7 @@ const SinglePortfolio = ({ refProp, setPortfolio, portfolio, portfolioType, key 
                                             </>
                                         }
                                     </div>
+
                                 </Accordion.Body>
 
                             </>
