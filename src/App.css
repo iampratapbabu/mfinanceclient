@@ -9,7 +9,7 @@
 /*SCROLL BAR */
 /* Style the scrollbar track */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 5px;
   /* Width of the scrollbar */
 }
 
@@ -31,6 +31,19 @@
 ::-webkit-scrollbar-corner {
   background-color: #f1f1f1;
   /* Scrollbar corner color */
+}
+
+.modal-form input {
+  outline: 0;
+  border-width: 0 0 3px 0;
+  border-radius: 0;
+}
+
+.modal-form input:focus {
+  font-weight: 500;
+  border-color: blue;
+  border-width: 0 0 3px 0;
+  outline: none;
 }
 
 
