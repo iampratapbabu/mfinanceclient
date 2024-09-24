@@ -15,12 +15,18 @@ import { useTranslation } from "react-i18next";
 import { BsPersonFill } from "react-icons/bs";
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
+import { FaHome,FaRupeeSign,FaUser  } from "react-icons/fa";
+
+
 import userimg from '../../assets/userimg.png';
 
 
 
 //Econtext files
 import { Econtext } from '../../context/Econtext';
+import { IoSettingsSharp } from 'react-icons/io5';
+import { IoIosLogOut } from 'react-icons/io';
+import { MdMenu } from 'react-icons/md';
 
 const Header = () => {
     const navigate = useNavigate();
@@ -61,35 +67,36 @@ const Header = () => {
         <>
             <header>
                 <Navbar className="navbar-custom" fixed="top">
-                        <Navbar.Brand onClick={gotoHome}><h4>mFinance</h4></Navbar.Brand>
-                        <Navbar.Collapse className="justify-content-end">
-                            <Navbar.Text>
-                                {/* Hi {user?.firstName} */}
-                                <Button variant='light' onClick={() => setShow(true)}><BsPersonFill /></Button>
-                            </Navbar.Text>
-                        </Navbar.Collapse>
+                    <Navbar.Brand onClick={gotoHome}><h4>mFinance</h4></Navbar.Brand>
+                    <Navbar.Collapse className="justify-content-end">
+                        <Navbar.Text>
+                            {/* Hi {user?.firstName} */}
+                            <Button variant='light' onClick={() => setShow(true)}><MdMenu /></Button>
+                        </Navbar.Text>
+                    </Navbar.Collapse>
                 </Navbar>
 
                 <Offcanvas className="sidebar" show={show} placement="end" onHide={handleClose}>
                     <Offcanvas.Header closeButton>
-                        <Offcanvas.Title>{}</Offcanvas.Title>
+                        <Offcanvas.Title>{ }</Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         <div className='sidebar-main'>
                             <div className='img-block'>
-                                <img src={userimg} height="50px" width="50px"></img>
+                                <img src={`https://ui-avatars.com/api/?name=${user.firstName}&size=75`} height="50px" width="50px"></img>
                             </div>
-                            <h5>Tej Pratap</h5>
-                            <hr/>
+                            <h5>{user?.firstName} {user?.lastName}</h5>
+                            <hr />
                             <div className='links'>
-                                <p><Link to='/profile' onClick={handleClose}>Profile</Link></p>
-                                <p><Link to='/all-portfolio' onClick={handleClose}>Portfolio</Link></p>
-                                <p><Link to='/user-settings' onClick={handleClose}>Settings</Link></p>
-                                <hr/>
-                                <Button variant='danger' onClick={logoutUi}>Log Out</Button>
+                                <Link to='/' onClick={handleClose}><FaHome />Home</Link>
+                                <Link to='/profile' onClick={handleClose}><FaUser />Profile</Link>
+                                <Link to='/all-portfolio' onClick={handleClose}><FaRupeeSign />Portfolio</Link>
+                                {/* <Link to='/user-settings' onClick={handleClose}><IoSettingsSharp />Settings</Link> */}
+                                <hr />
+                                <Button variant='danger' onClick={logoutUi}><IoIosLogOut />                                Log Out</Button>
                             </div>
 
-                           
+
                         </div>
 
 

@@ -54,6 +54,7 @@
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
+
 }
 
 
@@ -234,7 +235,9 @@
 
 /*SIDEBAR*/
 
-.sidebar {}
+.sidebar {
+  /* background-color:#2c73d2; */
+}
 
 .img-block {
   display: flex;
@@ -242,20 +245,44 @@
   margin-bottom: 1rem;
 }
 
+.img-block img {
+  border-radius: 25px;
+}
+
 .sidebar-main h5 {
   text-align: center;
+  font-weight: 400;
 }
 
 .links {
   padding: 0.5rem;
-  width: 100%;
   text-align: center;
+  /* border:1px solid red; */
 
 }
 
 .links a {
   text-decoration: none;
-  text-transform: uppercase;
+  font-size: 1.3rem;
+  color: #845ec2;
+  background-color: #ffc75f;
+  display: block;
+  width: 100%;
+  /* border: 1px solid grey; */
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.links a:hover {
+
+  color: #ffc75f;
+  background-color: #845ec2;
+}
+
+.links svg {
+  /* background-color: red; */
+  margin-right: 10px;
+  font-size: 1rem;
 }
 
 
@@ -378,32 +405,56 @@
   margin: 0.5rem;
 }
 
-.portfolio-detail{
+.portfolio-detail {
   display: flex;
   justify-content: space-between;
 }
 
-.portfolio-detail h6{
+.portfolio-detail h6 {
   font-weight: 300;
   font-size: 0.9rem;
   /* background-color: red; */
 }
 
-.portfolio-detail span{
-  color:#006eff;
+.portfolio-detail span {
+  color: #006eff;
   /* background-color:green; */
 }
 
-.portfolio-button{
+.portfolio-button {
   display: flex;
   /* background-color:green; */
 }
 
-.portfolio-button button{
+.portfolio-button button {
   margin: 0 1rem;
 
 }
 
+/*USER PROFILE */
+.user-profile {
+  border: 2px solid #4d8076;
+  border-radius: 10px;
+  width: 90%;
+  padding: 10px;
+  margin: 15rem 0;
+}
+
+.user-profile img {
+
+  border-radius: 40px;
+}
+
+.user-profile h5 {
+  font-weight: 300;
+  color: #4d8076;
+  font-size: 15px;
+}
+
+.user-profile h6 {
+  font-weight: 400;
+
+}
 
 
 

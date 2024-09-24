@@ -156,7 +156,7 @@ const AllPortfolio = () => {
             if (axiosRes.data.success) {
                 setLoading(false);
                 const { resData } = axiosRes.data;
-                setPortfolioData(resData);
+                setPortfolioData(resData?.portfolio);
             } else {
                 setLoading(false);
 
