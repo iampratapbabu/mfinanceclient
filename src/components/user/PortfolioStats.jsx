@@ -1,5 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { currencyFmt } from '../../helper/stringMethods';
+import moment from 'moment';
+import { dateWithTime, ddMMMYYYY } from '../../helper/dateHelper';
 
 
 
@@ -24,25 +26,6 @@ const PortfolioStats = (props) => {
         }
     }
 
-  
-
-    const userLoans = [
-        {
-            loanType: "Bike Loan",
-            loanValue: 114000,
-            loanDate: "24 Sept 2024"
-        },
-        {
-            loanType: "Personal Loan",
-            loanValue: 16000,
-            loanDate: "24 Sept 2024"
-        },
-        {
-            loanType: "Credit Card",
-            loanValue: 24000,
-            loanDate: "24 Sept 2024"
-        },
-    ]
 
 
     return (
@@ -82,7 +65,7 @@ const PortfolioStats = (props) => {
                             <div className='box-end'>
                                 <div className=''>
                                     <p>{singleAssest.assetType}</p>
-                                    <h6>Last Updated {singleAssest.assetDate}</h6>
+                                    <h6>As Of {ddMMMYYYY(singleAssest.assetDate)}</h6>
                                 </div>
                                 <div className=''>
                                     <h6>₹ {singleAssest.assetValue} </h6>
@@ -104,7 +87,7 @@ const PortfolioStats = (props) => {
                             <div className='box-end'>
                                 <div className=''>
                                     <p>{singleLoan.remarks}</p>
-                                    <h6>Last Updated {singleLoan.createdAt}</h6>
+                                    <h6>As Of {ddMMMYYYY(singleLoan.createdAt)}</h6>
                                 </div>
                                 <div className=''>
                                     <h6>₹ {singleLoan.amount} </h6>
@@ -126,7 +109,7 @@ const PortfolioStats = (props) => {
                             <div className='box-end'>
                                 <div className=''>
                                     <p>{singleExpense.expenseType}</p>
-                                    <h6>{singleExpense.createdAt}</h6>
+                                    <h6>{dateWithTime(singleExpense.createdAt)}</h6>
                                 </div>
                                 <div className=''>
                                     <h6>₹ {singleExpense.amount} </h6>

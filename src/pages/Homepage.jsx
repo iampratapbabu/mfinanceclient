@@ -32,7 +32,7 @@ const HomePage = () => {
 
   useEffect(() => {
     loadPortfolio();
-  }, [show])
+  }, [])
 
 
   const funToRun = (param) => {
@@ -58,6 +58,8 @@ const HomePage = () => {
       toast.success(serverRes.message);
       setShow(false);
       console.log(serverRes);
+      loadPortfolio();
+
     } catch (err) {
       console.log(err);
     }
@@ -102,8 +104,6 @@ const HomePage = () => {
           loading ? <ContentLoader /> :
             <>
               <PortfolioStats custom={"this is custom prop"} funProp={funToRun} userPortfolio={portfolioData} />
-
-
             </>
         }
 

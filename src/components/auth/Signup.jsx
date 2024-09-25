@@ -18,6 +18,7 @@ const Signup = () => {
     const [signupInfo, setSignupInfo] = useState({
         firstName: "",
         lastName: "",
+        gender:"",
         email: "",
         phone: "",
         password: "",
@@ -40,10 +41,12 @@ const Signup = () => {
             localStorage.setItem('token', res.resData.token);
             authDispatch({ type: "REGISTER", payload: res.resData.user })
             navigate('/');
-            toast.success("Registration Successfull");
+            toast.success(res.message);
         } else {
             console.log(res.message);
-            if (res.response) {
+            if (res.response.status == 500) {
+                toast.error("Something Went Wrong...");
+            } else if (res.response.status != 500) {
                 toast.error(res.response.data.message);
             } else {
                 toast.error("Signup Failed " + res.message);
@@ -59,10 +62,10 @@ const Signup = () => {
             <div className='signup-page'>
                 <section>
                     <h2>Create An Account</h2>
-                    <hr/>
+                    <hr />
                     <Form onSubmit={handleSubmit}>
-                    <div className='row'>
-                       
+                        <div className='row'>
+
                             <div className='col'>
                                 <Form.Group className="mb-3" controlId="formFirstName">
                                     <Form.Control className='shadow-none' name="firstName" type="text" placeholder="First Name" onChange={handleChange} />
@@ -73,34 +76,41 @@ const Signup = () => {
                                     <Form.Control className='shadow-none' name="lastName" type="text" placeholder="Last Name" onChange={handleChange} />
                                 </Form.Group>
                             </div>
-                    </div>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Control className='shadow-none' name="email" type="email" placeholder="Email" onChange={handleChange} />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicNumber">
-                        <Form.Control className='shadow-none' name="phone" type="text" placeholder="Phone Number" onChange={handleChange} />
-                        <Form.Text className="text-muted">
-                        </Form.Text>
-                    </Form.Group>
+                        </div>
+                        <Form.Group className="mb-3" >
+                            <Form.Select aria-label="Select Gender" name="gender" onChange={handleChange}>
+                                <option>Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </Form.Select>
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Control className='shadow-none' name="email" type="email" placeholder="Email" onChange={handleChange} />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicNumber">
+                            <Form.Control className='shadow-none' name="phone" type="text" placeholder="Phone Number" onChange={handleChange} />
+                            <Form.Text className="text-muted">
+                            </Form.Text>
+                        </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Control className='shadow-none' name="password" type="password" placeholder="Password" onChange={handleChange} />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
-                        <Form.Control className='shadow-none' name="confirmPassword" type="password" placeholder="Confirm Password" onChange={handleChange} />
-                    </Form.Group>
-                    <Form.Group controlId="formFile" className="mb-3">
-                        <Form.Control className='shadow-none' name="userphoto" type="file" onChange={handleChange} />
-                    </Form.Group>
-                    <Button variant="dark" type="submit">
-                        Submit
-                    </Button>
-                </Form>
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Control className='shadow-none' name="password" type="password" placeholder="Password" onChange={handleChange} />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
+                            <Form.Control className='shadow-none' name="confirmPassword" type="password" placeholder="Confirm Password" onChange={handleChange} />
+                        </Form.Group>
+                        <Form.Group controlId="formFile" className="mb-3">
+                            <Form.Control className='shadow-none' name="userphoto" type="file" onChange={handleChange} />
+                        </Form.Group>
+                        <Button variant="dark" type="submit">
+                            Submit
+                        </Button>
+                    </Form>
 
-                <p>Already Have an account <Link to='/login'>Login</Link></p>
+                    <p>Already Have an account <Link to='/login'>Login</Link></p>
 
-            </section>
-        </div >
+                </section>
+            </div >
         </>
     )
 }

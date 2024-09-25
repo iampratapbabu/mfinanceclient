@@ -3,13 +3,14 @@ import Accordion from 'react-bootstrap/Accordion';
 import Button from 'react-bootstrap/Button';
 import { deletePortfolio } from '../../helper/httpHelper';
 import toast from 'react-hot-toast';
+import { ddMMYYYY } from '../../helper/dateHelper';
 
 
 
 
 
 
-const SinglePortfolio = ({ refProp, setPortfolio, portfolio, portfolioType, key }) => {
+const SinglePortfolio = ({ refProp, setPortfolio, portfolio, portfolioType }) => {
 
     useEffect(() => {
         //console.log(portfolio);
@@ -65,7 +66,7 @@ const SinglePortfolio = ({ refProp, setPortfolio, portfolio, portfolioType, key 
                                                     <h6>SIP Date:</h6>
                                                 </div>
                                                 <div className='col'>
-                                                    <span>{portfolio?.dateOfSip?.toLocaleString()}</span>
+                                                    <span>{ddMMYYYY(portfolio?.dateOfSip)}</span>
                                                 </div>
                                             </div>
                                             <hr />
@@ -105,7 +106,7 @@ const SinglePortfolio = ({ refProp, setPortfolio, portfolio, portfolioType, key 
                                                     <h6>Purchased Date:</h6>
                                                 </div>
                                                 <div className='col'>
-                                                    <span>{portfolio?.dateOfInvestment}</span>
+                                                    <span>{ddMMYYYY(portfolio?.dateOfInvestment)}</span>
                                                 </div>
                                             </div>
 
@@ -220,7 +221,7 @@ const SinglePortfolio = ({ refProp, setPortfolio, portfolio, portfolioType, key 
                                                     <h6>Transaction Date:</h6>
                                                 </div>
                                                 <div className='col'>
-                                                    <span>₹{portfolio?.createdAt}</span>
+                                                    <span>₹{ddMMYYYY(portfolio?.createdAt)}</span>
                                                 </div>
                                             </div>
 
@@ -272,7 +273,7 @@ const SinglePortfolio = ({ refProp, setPortfolio, portfolio, portfolioType, key 
                                                     <h6>Date:</h6>
                                                 </div>
                                                 <div className='col'>
-                                                    <span>{portfolio?.createdAt}</span>
+                                                    <span>{ddMMYYYY(portfolio?.createdAt)}</span>
                                                 </div>
                                             </div>
 

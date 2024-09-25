@@ -11,6 +11,7 @@ import { BASE_URL } from '../../config';
 import SinglePortfolio from '../../components/user/SinglePortfolio';
 import ContentLoader from '../../components/loader/ContentLoader';
 import toast from 'react-hot-toast';
+import { YYYYMMDD } from '../../helper/dateHelper';
 
 
 
@@ -21,6 +22,8 @@ const AllPortfolio = () => {
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(false);
     const [portfolioData, setPortfolioData] = useState([]);
+    const [portfolioSummary, setPortfolioSummary] = useState({});
+
     const [key, setKey] = useState('mutualFunds');
     const [btnAction, setBtnAction] = useState('');
     const [reloadEvent, setPageReloadEvent] = useState(false)
@@ -32,6 +35,8 @@ const AllPortfolio = () => {
     const [mutualFund, setMutualFund] = useState({
         name: "",
         amount: 0,
+        investmentType:"",
+        dateOfSip:"",
     });
 
     const [stock, setStock] = useState({
@@ -93,14 +98,12 @@ const AllPortfolio = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("handle submit rns");
+        console.log("handle submit rns",);
         if (btnAction !== "") {
             addEditPortfolio();
 
         }
     }
-
-
 
     const addEditPortfolio = async () => {
         try {
@@ -157,6 +160,7 @@ const AllPortfolio = () => {
                 setLoading(false);
                 const { resData } = axiosRes.data;
                 setPortfolioData(resData?.portfolio);
+                setPortfolioSummary(resData?.portfolioSummary)
             } else {
                 setLoading(false);
 
@@ -179,28 +183,27 @@ const AllPortfolio = () => {
 
     }
 
-
-
     return (
         <>
             <div className='all-portfolio'>
 
                 <div className='single-summary-card'>
+
                     <div className='box-end'>
                         <div className=''>
-                            <h6>Current</h6><span>₹ 2,00,000</span>
+                            <h6>{portfolioSummary?.obj1?.label}</h6><span>₹{portfolioSummary?.obj1?.value}</span>
                         </div>
                         <div className=''>
-                            <h6> Total Returns</h6><span>₹ 25,000</span>
+                            <h6>{portfolioSummary?.obj2?.label}</h6><span>₹{portfolioSummary?.obj2?.value}</span>
                         </div>
                     </div>
                     <br />
                     <div className='box-end'>
                         <div className=''>
-                            <h6>Invested</h6><span>₹ 1,75,000</span>
+                            <h6>{portfolioSummary?.obj3?.label}</h6><span>₹{portfolioSummary?.obj3?.value}</span>
                         </div>
                         <div className=''>
-                            <h6> Reurn(%)</h6><span> 23 %</span>
+                            <h6>{portfolioSummary?.obj4?.label}</h6><span>{portfolioSummary?.obj4?.value}</span>
                         </div>
                     </div>
                 </div>
@@ -237,7 +240,6 @@ const AllPortfolio = () => {
                                         <SinglePortfolio
                                             refProp={"profile"}
                                             setPortfolio={handleSetPortfolio}
-
                                             portfolioType={key}
                                             portfolio={singlePortfolio}
                                             key={i}
@@ -269,11 +271,21 @@ const AllPortfolio = () => {
                     <Modal.Body>
                         {key === "mutualFunds" &&
                             <>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                <Form.Group className="mb-3">
                                     <Form.Control name="name" type="text" placeholder="Enter MF Name" onChange={handleChange} value={mutualFund?.name || ""} />
                                 </Form.Group>
-                                <Form.Group className="mb-3" controlId="formBasicPassword">
-                                    <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} value={mutualFund?.amount || 0} />
+                                <Form.Group className="mb-3" >
+                                    <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} value={mutualFund?.amount || ""} />
+                                </Form.Group>
+                                <Form.Group className="mb-3" >
+                                    <Form.Select aria-label="Investment Type" name="investmentType" onChange={handleChange}value={mutualFund?.investmentType || ""}>
+                                        <option>Investment Type</option>
+                                        <option value="lumpsump">One Time</option>
+                                        <option value="sip">SIP</option>
+                                    </Form.Select>
+                                </Form.Group>
+                                <Form.Group className="mb-3" >
+                                    <Form.Control name="dateOfSip" type="date" placeholder="SIP Date" onChange={handleChange} value={YYYYMMDD(mutualFund?.dateOfSip) || ""} />
                                 </Form.Group>
                             </>
                         }
@@ -326,8 +338,12 @@ const AllPortfolio = () => {
                                 <Form.Group className="mb-3" controlId="formBasicPassword">
                                     <Form.Control name="amount" type="number" placeholder="Enter Loan Amount" onChange={handleChange} value={loan?.amount || ""} />
                                 </Form.Group>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
-                                    <Form.Control name="loanType" type="text" placeholder="Enter Loan Type" onChange={handleChange} value={loan?.loanType || ""} />
+                                <Form.Group className="mb-3" >
+                                    <Form.Select aria-label="Loan Type" name="loanType" onChange={handleChange} value={loan?.loanType || ""} >
+                                        <option>Loan Type</option>
+                                        <option value="given">Given</option>
+                                        <option value="taken">Taken</option>
+                                    </Form.Select>
                                 </Form.Group>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Control name="remarks" type="text" placeholder="Enter Remarks" onChange={handleChange} value={loan?.remarks || ""} />

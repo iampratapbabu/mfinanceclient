@@ -366,6 +366,19 @@
   justify-content: space-between;
 }
 
+.box-end h6{
+  font-weight: 300;
+  color: darkgray;
+
+}
+
+.box-end span{
+  color: #2c73d2;
+  font-weight: 400;
+  font-size: 1rem;
+
+}
+
 .box-end-col {}
 
 .summary-card h6 {
@@ -412,14 +425,18 @@
 
 .portfolio-detail h6 {
   font-weight: 300;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  color:darkgray
   /* background-color: red; */
 }
 
 .portfolio-detail span {
+  font-size: 0.8rem;
   color: #006eff;
   /* background-color:green; */
 }
+
+
 
 .portfolio-button {
   display: flex;
@@ -446,13 +463,14 @@
 }
 
 .user-profile h5 {
-  font-weight: 300;
+  font-weight: 400;
   color: #4d8076;
   font-size: 15px;
 }
 
 .user-profile h6 {
   font-weight: 400;
+  color: darkgray;
 
 }
 
@@ -518,7 +536,7 @@ footer {
 footer a,
 h6 {
   /* color: rgb(1, 54, 69); */
-  /* color: #ffff; */
+  color: #ffff;
   text-decoration: none;
 }
 
