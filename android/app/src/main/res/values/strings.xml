@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">mfinance</string>
+    <string name="title_activity_main">mfinance</string>
+    <string name="package_name">com.tejtech.mfinance</string>
+    <string name="custom_url_scheme">com.tejtech.mfinance</string>
+</resources>

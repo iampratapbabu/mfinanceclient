@@ -15,5 +15,6 @@ export const titleCase =(str) => {
 
 
 export const currencyFmt =(str) => {
+  if(str === null || str === undefined) return "";
   return str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 }

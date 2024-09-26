@@ -4,13 +4,14 @@ import Button from 'react-bootstrap/Button';
 import { deletePortfolio } from '../../helper/httpHelper';
 import toast from 'react-hot-toast';
 import { ddMMYYYY } from '../../helper/dateHelper';
+import { currencyFmt } from '../../helper/stringMethods';
 
 
 
 
 
 
-const SinglePortfolio = ({ refProp, setPortfolio, portfolio, portfolioType }) => {
+const SinglePortfolio = ({ refProp, setPortfolio,removePortfolio, portfolio, portfolioType }) => {
 
     useEffect(() => {
         //console.log(portfolio);
@@ -26,6 +27,7 @@ const SinglePortfolio = ({ refProp, setPortfolio, portfolio, portfolioType }) =>
         const serverRes = await deletePortfolio(portfolioPaylod?._id, portfolioType);
         if (serverRes.success) {
             toast.success(serverRes.message);
+            removePortfolio();
         }
     }
 
@@ -49,7 +51,7 @@ const SinglePortfolio = ({ refProp, setPortfolio, portfolio, portfolioType }) =>
                                                 <h6>Invested Amount:</h6>
                                             </div>
                                             <div className='col'>
-                                                <span>₹{portfolio?.amount}</span>
+                                                <span>₹{currencyFmt(portfolio?.amount)}</span>
                                             </div>
 
                                             <div className='row'>

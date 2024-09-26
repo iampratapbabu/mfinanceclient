@@ -183,6 +183,10 @@ const AllPortfolio = () => {
 
     }
 
+    const handleDeletePortfolio = () => {
+        loadPortfolio(key);
+    }
+
     return (
         <>
             <div className='all-portfolio'>
@@ -240,6 +244,7 @@ const AllPortfolio = () => {
                                         <SinglePortfolio
                                             refProp={"profile"}
                                             setPortfolio={handleSetPortfolio}
+                                            removePortfolio={handleDeletePortfolio}
                                             portfolioType={key}
                                             portfolio={singlePortfolio}
                                             key={i}
