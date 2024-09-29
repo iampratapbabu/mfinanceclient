@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { currencyFmt } from '../../helper/stringMethods';
 import moment from 'moment';
-import { dateWithTime, ddMMMYYYY } from '../../helper/dateHelper';
+import { dateWithTime, ddMMMYYYY, shortDate } from '../../helper/dateHelper';
 
 
 
@@ -58,65 +58,81 @@ const PortfolioStats = (props) => {
 
 
             <div className='summary-card'>
-                <h3 className='h3-title'>Assets</h3>
+                <div className='box-end'>
+                    <div className=''>
+                        <h3 className='h3-title'>Assets </h3>
+                    </div>
+                    <div className=''>
+                        <h6>As of {shortDate(new Date())}</h6>
+                    </div>
+                </div>
+                <hr />
                 {
                     props?.userPortfolio?.userAssests && props?.userPortfolio?.userAssests.map(singleAssest => (
                         <>
                             <div className='box-end'>
                                 <div className=''>
                                     <p>{singleAssest.assetType}</p>
-                                    <h6>As Of {ddMMMYYYY(singleAssest.assetDate)}</h6>
+                                    {/* <h6>As of {shortDate(singleAssest.assetDate)}</h6> */}
                                 </div>
                                 <div className=''>
                                     <h6>₹ {singleAssest.assetValue} </h6>
-                                    <button className='btn'>Detail</button>
+                                    {/* <button className='btn'>Detail</button> */}
                                 </div>
                             </div>
-                            <br />
                         </>
                     ))
                 }
             </div>
 
-            
+
             <div className='summary-card'>
-                <h3 className='h3-title'>Liablities</h3>
+                <div className='box-end'>
+                    <div className=''>
+                        <h3 className='h3-title'>Liablities </h3>
+                    </div>
+                    <div className=''>
+                        <h6>As of {shortDate(new Date())}</h6>
+                    </div>
+                </div>
+                <hr />
+
                 {
-                     props?.userPortfolio?.userLoans.map(singleLoan => (
+                    props?.userPortfolio?.userLoans.map(singleLoan => (
                         <>
                             <div className='box-end'>
                                 <div className=''>
                                     <p>{singleLoan.remarks}</p>
-                                    <h6>As Of {ddMMMYYYY(singleLoan.createdAt)}</h6>
+                                    {/* <h6>As of {shortDate(singleLoan.createdAt)}</h6> */}
                                 </div>
                                 <div className=''>
                                     <h6>₹ {singleLoan.amount} </h6>
-                                    <button className='btn'>Detail</button>
+                                    {/* <button className='btn'>Detail</button> */}
                                 </div>
                             </div>
-                            <br />
                         </>
                     ))
                 }
             </div>
 
-            
+
             <div className='summary-card'>
                 <h3 className='h3-title'>Expenses</h3>
+                <hr/>
                 {
-                     props?.userPortfolio?.userExpenses.map(singleExpense => (
+                    props?.userPortfolio?.userExpenses.map(singleExpense => (
                         <>
                             <div className='box-end'>
                                 <div className=''>
                                     <p>{singleExpense.expenseType}</p>
-                                    <h6>{dateWithTime(singleExpense.createdAt)}</h6>
+                                    <h6>{shortDate(singleExpense.createdAt)}</h6>
                                 </div>
                                 <div className=''>
                                     <h6>₹ {singleExpense.amount} </h6>
-                                    <button className='btn'>Detail</button>
+                                    {/* <button className='btn'>Detail</button> */}
                                 </div>
                             </div>
-                            <hr/>
+                            <hr />
                         </>
                     ))
                 }

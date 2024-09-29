@@ -12,6 +12,10 @@ export const YYYYMMDD = (inputDate) =>{
     return moment(inputDate).format('YYYY-MM-DD');
 }
 
+export const shortDate = (inputDate) =>{
+    return moment(inputDate).format('DD-MMM-YY');
+}
+
 export const dateWithTime = (inputDate) =>{
     return moment(inputDate).format('DD-MMM-YY HH:mm');
 }

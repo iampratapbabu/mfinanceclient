@@ -230,7 +230,7 @@ const AllPortfolio = () => {
 
                     <div className="d-grid gap-2 mb-3">
                         <Button variant="info" size="lg" onClick={() => handleShow('add')}>
-                            + ADD {key?.toUpperCase()}
+                             Add {key?.toLocaleUpperCase()}
                         </Button>
                     </div>
 

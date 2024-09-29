@@ -66,7 +66,7 @@ const Header = () => {
     return (
         <>
             <header>
-                <Navbar className="navbar-custom" fixed="top">
+                <Navbar className="navbar-custom">
                     <Navbar.Brand onClick={gotoHome}><h4>mFinance</h4></Navbar.Brand>
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text>
@@ -85,7 +85,7 @@ const Header = () => {
                             <div className='img-block'>
                                 <img src={`https://ui-avatars.com/api/?name=${user.firstName}&size=75`} height="50px" width="50px"></img>
                             </div>
-                            <h5>{user?.firstName} {user?.lastName}</h5>
+                            <h4>{user?.firstName} {user?.lastName}</h4>
                             <hr />
                             <div className='links'>
                                 <Link to='/' onClick={handleClose}><FaHome />Home</Link>
