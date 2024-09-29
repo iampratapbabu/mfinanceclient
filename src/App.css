@@ -55,7 +55,7 @@
   font-weight: 400;
   font-style: normal;
   margin-top: 3rem;
-  /* height: 100%; */
+  height: 100vh;
 }
 
 
@@ -252,7 +252,7 @@
 }
 
 .sidebar {
-  width: 300px;
+  width: 300px !important;
   background-color: rgba(255, 255, 255, 0.5); /* Transparent white */
   backdrop-filter: blur(10px); /* Blurs content behind the div */
   -webkit-backdrop-filter: blur(10px); /* Safari support */
@@ -442,27 +442,35 @@
 
 .portfolio-detail h6 {
   font-weight: 300;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: darkgray
     /* background-color: red; */
 }
 
 .portfolio-detail span {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: #006eff;
   /* background-color:green; */
 }
 
-
-
-.portfolio-button {
+.portfolio-button{
   display: flex;
-  /* background-color:green; */
+  justify-content: flex-end;
 }
 
-.portfolio-button button {
-  margin: 0 1rem;
+.btn-common{  
+  padding: 5px;
+  font-size: 1.2rem;
+  border: 0;
+  background-color: #ffff;
+}
 
+.edit-button{
+  color:#006eff;
+}
+
+.delete-button{
+  color:red;
 }
 
 .tabs li{

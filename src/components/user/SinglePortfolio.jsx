@@ -5,13 +5,15 @@ import { deletePortfolio } from '../../helper/httpHelper';
 import toast from 'react-hot-toast';
 import { ddMMYYYY } from '../../helper/dateHelper';
 import { currencyFmt } from '../../helper/stringMethods';
+import { CiEdit } from 'react-icons/ci';
+import { MdDeleteOutline } from 'react-icons/md';
 
 
 
 
 
 
-const SinglePortfolio = ({ refProp, setPortfolio,removePortfolio, portfolio, portfolioType }) => {
+const SinglePortfolio = ({ refProp, setPortfolio, removePortfolio, portfolio, portfolioType }) => {
 
     useEffect(() => {
         //console.log(portfolio);
@@ -65,7 +67,7 @@ const SinglePortfolio = ({ refProp, setPortfolio,removePortfolio, portfolio, por
 
                                             <div className='row'>
                                                 <div className='col'>
-                                                    <h6>SIP Date:</h6>
+                                                    <h6>Sip Date:</h6>
                                                 </div>
                                                 <div className='col'>
                                                     <span>{ddMMYYYY(portfolio?.dateOfSip)}</span>
@@ -80,8 +82,8 @@ const SinglePortfolio = ({ refProp, setPortfolio,removePortfolio, portfolio, por
                                         {
                                             refProp == "profile" &&
                                             <>
-                                                <Button variant='warning' onClick={() => handleEdit(portfolio)}>Edit</Button>
-                                                <Button variant='danger' onClick={() => handleDelete(portfolio)}>Delete</Button>
+                                                <button className='edit-button btn-common' onClick={() => handleEdit(portfolio)}><CiEdit /></button>
+                                                <button className='delete-button btn-common' onClick={() => handleDelete(portfolio)}><MdDeleteOutline /></button>
                                             </>
                                         }
                                     </div>
@@ -122,8 +124,8 @@ const SinglePortfolio = ({ refProp, setPortfolio,removePortfolio, portfolio, por
                                         {
                                             refProp == "profile" &&
                                             <>
-                                                <Button variant='warning' onClick={() => handleEdit(portfolio)}>Edit</Button>
-                                                <Button variant='danger' onClick={() => handleDelete(portfolio)}>Delete</Button>
+                                                <button className='edit-button btn-common' onClick={() => handleEdit(portfolio)}><CiEdit /></button>
+                                                <button className='delete-button btn-common' onClick={() => handleDelete(portfolio)}><MdDeleteOutline /></button>
                                             </>
                                         }
                                     </div>
@@ -183,8 +185,8 @@ const SinglePortfolio = ({ refProp, setPortfolio,removePortfolio, portfolio, por
                                         {
                                             refProp == "profile" &&
                                             <>
-                                                <Button variant='warning' onClick={() => handleEdit(portfolio)}>Edit</Button>
-                                                <Button variant='danger' onClick={() => handleDelete(portfolio)}>Delete</Button>
+                                                <button className='edit-button btn-common' onClick={() => handleEdit(portfolio)}><CiEdit /></button>
+                                                <button className='delete-button btn-common' onClick={() => handleDelete(portfolio)}><MdDeleteOutline /></button>
                                             </>
                                         }
                                     </div>
@@ -236,8 +238,8 @@ const SinglePortfolio = ({ refProp, setPortfolio,removePortfolio, portfolio, por
                                         {
                                             refProp == "profile" &&
                                             <>
-                                                <Button variant='warning' onClick={() => handleEdit(portfolio)}>Edit</Button>
-                                                <Button variant='danger' onClick={() => handleDelete(portfolio)}>Delete</Button>
+                                                <button className='edit-button btn-common' onClick={() => handleEdit(portfolio)}><CiEdit /></button>
+                                                <button className='delete-button btn-common' onClick={() => handleDelete(portfolio)}><MdDeleteOutline /></button>
                                             </>
                                         }
                                     </div>
@@ -288,8 +290,8 @@ const SinglePortfolio = ({ refProp, setPortfolio,removePortfolio, portfolio, por
                                         {
                                             refProp == "profile" &&
                                             <>
-                                                <Button variant='warning' onClick={() => handleEdit(portfolio)}>Edit</Button>
-                                                <Button variant='danger' onClick={() => handleDelete(portfolio)}>Delete</Button>
+                                                <button className='edit-button btn-common' onClick={() => handleEdit(portfolio)}><CiEdit /></button>
+                                                <button className='delete-button btn-common' onClick={() => handleDelete(portfolio)}><MdDeleteOutline /></button>
                                             </>
                                         }
                                     </div>
