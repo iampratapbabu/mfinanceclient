@@ -15,6 +15,20 @@ const UserProfile = () => {
 
   const [currDiv, setCurrDiv] = useState("");
 
+  const [signupInfo, setSignupInfo] = useState({
+    firstName: "",
+    lastName: "",
+    gender: "",
+    email: "",
+    phone: ""
+  })
+
+  const [passwordInfo, setPasswordInfo] = useState({
+    oldPassword: "",
+    newPassword: "",
+    confirmNewPassword: ""
+  })
+
   const changeDiv = (divType) => {
     setCurrDiv(divType)
   }
@@ -90,16 +104,41 @@ const UserProfile = () => {
           currDiv === "editProfile" &&
           <>
             <div className='profile-edit-section'>
-            <h4>Enter New Details</h4>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Control className='shadow-none' name="userid" type="text" placeholder="abc@gmail.com" onChange={handleChange} />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Control className='shadow-none' name="password" type="password" placeholder="*********" onChange={handleChange} />
-              </Form.Group>
-              <Button variant="dark" type="submit">
-                Submit
-              </Button>
+              <h4>Enter New Details</h4>
+              <Form onSubmit={handleSubmit}>
+
+                <Form.Group className="mb-3" controlId="formFirstName">
+                  <Form.Control className='shadow-none' name="firstName" type="text" placeholder="First Name" onChange={handleChange} />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formLastName">
+                  <Form.Control className='shadow-none' name="lastName" type="text" placeholder="Last Name" onChange={handleChange} />
+                </Form.Group>
+
+                <Form.Group className="mb-3" >
+                  <Form.Select aria-label="Select Gender" name="gender" onChange={handleChange}>
+                    <option>Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </Form.Select>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Control className='shadow-none' name="email" type="email" placeholder="Email" onChange={handleChange} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicNumber">
+                  <Form.Control className='shadow-none' name="phone" type="text" placeholder="Phone Number" onChange={handleChange} />
+                  <Form.Text className="text-muted">
+                  </Form.Text>
+                </Form.Group>
+
+                <Button variant="danger" onClick={() => setCurrDiv("")}>
+                  Close
+                </Button>
+                <Button variant="dark" type="submit">
+                  Submit
+                </Button>
+              </Form>
+
             </div>
           </>
         }
@@ -110,15 +149,18 @@ const UserProfile = () => {
             <div className='profile-edit-section'>
               <h4>Enter New Password</h4>
               <Form onSubmit={handleSubmit}>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3" >
                   <Form.Control className='shadow-none' name="password" type="password" placeholder="Old Password" onChange={handleChange} />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3" >
                   <Form.Control className='shadow-none' name="password" type="password" placeholder="New Password" onChange={handleChange} />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3">
                   <Form.Control className='shadow-none' name="password" type="password" placeholder="Confirm New Password" onChange={handleChange} />
                 </Form.Group>
+                <Button variant="danger" onClick={() => setCurrDiv("")}>
+                  Close
+                </Button>
                 <Button variant="dark" type="submit">
                   Submit
                 </Button>

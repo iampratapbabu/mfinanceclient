@@ -526,8 +526,12 @@
 .profile-edit-section{
   margin-top: 2rem;
   padding: 10px;
+  text-align: center;
 }
 
+.profile-edit-section button{
+  margin: 2px;
+}
 
 
 
