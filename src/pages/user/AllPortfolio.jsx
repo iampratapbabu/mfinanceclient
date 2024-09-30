@@ -285,8 +285,8 @@ const AllPortfolio = () => {
                                 <Form.Group className="mb-3" >
                                     <Form.Select aria-label="Investment Type" name="investmentType" onChange={handleChange}value={mutualFund?.investmentType || ""}>
                                         <option>Investment Type</option>
-                                        <option value="lumpsump">One Time</option>
-                                        <option value="sip">SIP</option>
+                                        <option value="LUMPSUMP">One Time</option>
+                                        <option value="SIP">SIP</option>
                                     </Form.Select>
                                 </Form.Group>
                                 <Form.Group className="mb-3" >

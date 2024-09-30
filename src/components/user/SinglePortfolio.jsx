@@ -49,11 +49,13 @@ const SinglePortfolio = ({ refProp, setPortfolio, removePortfolio, portfolio, po
                                 <Accordion.Body>
                                     <div className='portfolio-detail'>
                                         <div className='row'>
-                                            <div className='col'>
-                                                <h6>Invested Amount:</h6>
-                                            </div>
-                                            <div className='col'>
-                                                <span>₹{currencyFmt(portfolio?.amount)}</span>
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <h6>Invested Amount:</h6>
+                                                </div>
+                                                <div className='col'>
+                                                    <span>₹ {currencyFmt(portfolio?.amount)}</span>
+                                                </div>
                                             </div>
 
                                             <div className='row'>
@@ -67,13 +69,13 @@ const SinglePortfolio = ({ refProp, setPortfolio, removePortfolio, portfolio, po
 
                                             <div className='row'>
                                                 <div className='col'>
-                                                    <h6>Sip Date:</h6>
+                                                    <h6>SIP Date:</h6>
                                                 </div>
                                                 <div className='col'>
                                                     <span>{ddMMYYYY(portfolio?.dateOfSip)}</span>
                                                 </div>
                                             </div>
-                                            <hr />
+                                            <br />
                                         </div>
 
                                     </div>
@@ -98,13 +100,14 @@ const SinglePortfolio = ({ refProp, setPortfolio, removePortfolio, portfolio, po
                                 <Accordion.Body>
                                     <div className='portfolio-detail'>
                                         <div className='row'>
-                                            <div className='col'>
-                                                <h6>Invested Amount:</h6>
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <h6>Invested Amount:</h6>
+                                                </div>
+                                                <div className='col'>
+                                                    <span>₹ {portfolio?.amount}</span>
+                                                </div>
                                             </div>
-                                            <div className='col'>
-                                                <span>₹{portfolio?.amount}</span>
-                                            </div>
-
                                             <div className='row'>
                                                 <div className='col'>
                                                     <h6>Purchased Date:</h6>
@@ -115,7 +118,7 @@ const SinglePortfolio = ({ refProp, setPortfolio, removePortfolio, portfolio, po
                                             </div>
 
 
-                                            <hr />
+                                            <br />
                                         </div>
 
                                     </div>
@@ -143,11 +146,13 @@ const SinglePortfolio = ({ refProp, setPortfolio, removePortfolio, portfolio, po
 
                                     <div className='portfolio-detail'>
                                         <div className='row'>
-                                            <div className='col'>
-                                                <h6>Account Number:</h6>
-                                            </div>
-                                            <div className='col'>
-                                                <span>{portfolio?.accountNumber}</span>
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <h6>Account Number:</h6>
+                                                </div>
+                                                <div className='col'>
+                                                    <span>{portfolio?.accountNumber}</span>
+                                                </div>
                                             </div>
 
                                             <div className='row'>
@@ -163,7 +168,7 @@ const SinglePortfolio = ({ refProp, setPortfolio, removePortfolio, portfolio, po
                                                     <h6>Current Balance:</h6>
                                                 </div>
                                                 <div className='col'>
-                                                    <span>₹{portfolio?.currentBalance}</span>
+                                                    <span>₹ {portfolio?.currentBalance}</span>
                                                 </div>
 
                                             </div>
@@ -176,7 +181,7 @@ const SinglePortfolio = ({ refProp, setPortfolio, removePortfolio, portfolio, po
                                                     <span>{portfolio?.ifscCode}</span>
                                                 </div>
                                             </div>
-                                            <hr />
+                                            <br />
                                         </div>
 
                                     </div>
@@ -204,11 +209,13 @@ const SinglePortfolio = ({ refProp, setPortfolio, removePortfolio, portfolio, po
 
                                     <div className='portfolio-detail'>
                                         <div className='row'>
-                                            <div className='col'>
-                                                <h6>Expense Type:</h6>
-                                            </div>
-                                            <div className='col'>
-                                                <span>{portfolio?.expenseType}</span>
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <h6>Expense Type:</h6>
+                                                </div>
+                                                <div className='col'>
+                                                    <span>{portfolio?.expenseType}</span>
+                                                </div>
                                             </div>
 
                                             <div className='row'>
@@ -216,7 +223,7 @@ const SinglePortfolio = ({ refProp, setPortfolio, removePortfolio, portfolio, po
                                                     <h6>Amount:</h6>
                                                 </div>
                                                 <div className='col'>
-                                                    <span>₹{portfolio?.amount}</span>
+                                                    <span>₹ {portfolio?.amount}</span>
                                                 </div>
                                             </div>
 
@@ -225,11 +232,11 @@ const SinglePortfolio = ({ refProp, setPortfolio, removePortfolio, portfolio, po
                                                     <h6>Transaction Date:</h6>
                                                 </div>
                                                 <div className='col'>
-                                                    <span>₹{ddMMYYYY(portfolio?.createdAt)}</span>
+                                                    <span>{ddMMYYYY(portfolio?.createdAt)}</span>
                                                 </div>
                                             </div>
 
-                                            <hr />
+                                            <br />
                                         </div>
 
                                     </div>
@@ -256,11 +263,13 @@ const SinglePortfolio = ({ refProp, setPortfolio, removePortfolio, portfolio, po
 
                                     <div className='portfolio-detail'>
                                         <div className='row'>
-                                            <div className='col'>
-                                                <h6>Loan Amount:</h6>
-                                            </div>
-                                            <div className='col'>
-                                                <span>₹{portfolio?.amount}</span>
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <h6>Loan Amount:</h6>
+                                                </div>
+                                                <div className='col'>
+                                                    <span>₹ {portfolio?.amount}</span>
+                                                </div>
                                             </div>
 
                                             <div className='row'>
@@ -281,7 +290,7 @@ const SinglePortfolio = ({ refProp, setPortfolio, removePortfolio, portfolio, po
                                                 </div>
                                             </div>
 
-                                            <hr />
+                                            <br />
                                         </div>
 
                                     </div>

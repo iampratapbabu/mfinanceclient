@@ -362,7 +362,7 @@
 
 .summary-card {
   background-color: #ffff;
-  border: 2px solid lightpink;
+  /* border: 2px solid lightpink; */
   border-radius: 10px;
   padding: 20px;
   /* box-shadow: 2px 2px 20px #888888; */
@@ -442,13 +442,13 @@
 
 .portfolio-detail h6 {
   font-weight: 300;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: darkgray
     /* background-color: red; */
 }
 
 .portfolio-detail span {
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: #006eff;
   /* background-color:green; */
 }
@@ -479,17 +479,36 @@
 
 /*USER PROFILE */
 .user-profile {
-  border: 2px solid #4d8076;
+  /* border: 2px solid #4d8076; */
   border-radius: 10px;
   width: 90%;
   padding: 10px;
-  margin: 15rem 0;
+  margin: auto 0;
   background-color: #ffff;
 }
 
-.user-profile img {
-
+.profile-img{
   border-radius: 40px;
+  /* background-color: red; */
+  text-align: center;
+  margin: 1rem auto; /* Centers horizontally */
+}
+
+.profile-img img{
+  border-radius: 40px;
+}
+
+.profile-button{
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-profile{
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #fbeaff;
+  border: 0.5px
 }
 
 .user-profile h5 {
@@ -504,7 +523,10 @@
 
 }
 
-
+.profile-edit-section{
+  margin-top: 2rem;
+  padding: 10px;
+}
 
 
 

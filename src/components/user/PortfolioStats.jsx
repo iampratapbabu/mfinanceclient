@@ -118,10 +118,11 @@ const PortfolioStats = (props) => {
 
             <div className='summary-card'>
                 <h3 className='h3-title'>Expenses</h3>
-                <hr/>
+              
                 {
                     props?.userPortfolio?.userExpenses.map(singleExpense => (
                         <>
+                          <hr/>
                             <div className='box-end'>
                                 <div className=''>
                                     <p>{singleExpense.expenseType}</p>
@@ -132,7 +133,6 @@ const PortfolioStats = (props) => {
                                     {/* <button className='btn'>Detail</button> */}
                                 </div>
                             </div>
-                            <hr />
                         </>
                     ))
                 }
