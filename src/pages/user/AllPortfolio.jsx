@@ -269,10 +269,12 @@ const AllPortfolio = () => {
 
 
             <Modal show={show} onHide={handleClose}>
+            <div className='common-modal'>
                 <Modal.Header closeButton>
                     <Modal.Title>ADD {key?.toUpperCase()}</Modal.Title>
                 </Modal.Header>
                 <Form onSubmit={handleSubmit}>
+                <div className='modal-form'>
                     <Modal.Body>
                         {key === "mutualFunds" &&
                             <>
@@ -365,7 +367,9 @@ const AllPortfolio = () => {
                             Submit
                         </Button>
                     </Modal.Footer>
+                    </div>
                 </Form>
+                </div>
             </Modal>
 
 

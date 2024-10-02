@@ -110,6 +110,7 @@ const HomePage = () => {
       </div>
 
       <Modal show={show} onHide={handleClose}>
+        <div className='common-modal'>
         <Modal.Header closeButton>
           <Modal.Title>Record Expense</Modal.Title>
         </Modal.Header>
@@ -133,6 +134,7 @@ const HomePage = () => {
             </Button>
           </Modal.Footer>
         </Form>
+        </div>
       </Modal>
 
 
