@@ -63,7 +63,7 @@ const UserProfile = () => {
       console.log("editProfile [SUCCESS]", axiosRes.data);
       if (axiosRes.data.success) {
         loadUser();
-        setCurrDiv("");
+        setCurrDiv(""); 
         setLoading(false);
       } else {
         setLoading(false);
@@ -125,7 +125,7 @@ const UserProfile = () => {
 
           <div className='profile-button'>
             <button onClick={() => changeDiv('editProfile')} className='btn-profile'>Edit Profile</button>
-            <button onClick={() => changeDiv('changePassword')} className='btn-profile'>Change Password</button>
+            {/* <button onClick={() => changeDiv('changePassword')} className='btn-profile'>Change Password</button> */}
           </div>
         </div>
 
