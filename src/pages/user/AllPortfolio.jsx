@@ -22,6 +22,7 @@ const AllPortfolio = () => {
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(false);
     const [portfolioData, setPortfolioData] = useState([]);
+    const [allExpenseTypes, setAllExpenseTypes] = useState([])
     const [portfolioSummary, setPortfolioSummary] = useState({});
 
     const [key, setKey] = useState('mutualFunds');
@@ -35,8 +36,8 @@ const AllPortfolio = () => {
     const [mutualFund, setMutualFund] = useState({
         name: "",
         amount: 0,
-        investmentType:"",
-        dateOfSip:"",
+        investmentType: "",
+        dateOfSip: "",
     });
 
     const [stock, setStock] = useState({
@@ -143,6 +144,9 @@ const AllPortfolio = () => {
     const handleTabKey = (tabKey) => {
         setKey(tabKey);
         loadPortfolio(tabKey);
+        if (tabKey === "expenses") {
+            loadExpenseType();
+        }
     }
 
     const loadPortfolio = async (ptype) => {
@@ -163,6 +167,27 @@ const AllPortfolio = () => {
                 setPortfolioSummary(resData?.portfolioSummary)
             } else {
                 setLoading(false);
+
+            }
+        } catch (err) {
+            console.log("loadportfolio [ERROR]", err);
+            setLoading(false);
+        }
+    }
+
+    const loadExpenseType = async (ptype) => {
+        try {
+            const axiosRes = await axios({
+                method: "GET",
+                headers: { 'x-access-token': localStorage.getItem('token') },
+                url: `${BASE_URL}/api/utils/expensetype`,
+                // data: { portfolioType: ptype }
+            });
+            console.log("loadExpenseType [SUCCESS]", axiosRes.data);
+            if (axiosRes.data.success) {
+                const { resData } = axiosRes.data;
+                setAllExpenseTypes(resData);
+            } else {
 
             }
         } catch (err) {
@@ -230,7 +255,7 @@ const AllPortfolio = () => {
 
                     <div className="d-grid gap-2 mb-3">
                         <Button variant="info" size="lg" onClick={() => handleShow('add')}>
-                             Add {key?.toLocaleUpperCase()}
+                            Add {key?.toLocaleUpperCase()}
                         </Button>
                     </div>
 
@@ -269,106 +294,112 @@ const AllPortfolio = () => {
 
 
             <Modal show={show} onHide={handleClose}>
-            <div className='common-modal'>
-                <Modal.Header closeButton>
-                    <Modal.Title>ADD {key?.toUpperCase()}</Modal.Title>
-                </Modal.Header>
-                <Form onSubmit={handleSubmit}>
-                <div className='modal-form'>
-                    <Modal.Body>
-                        {key === "mutualFunds" &&
-                            <>
-                                <Form.Group className="mb-3">
-                                    <Form.Control name="name" type="text" placeholder="Enter MF Name" onChange={handleChange} value={mutualFund?.name || ""} />
-                                </Form.Group>
-                                <Form.Group className="mb-3" >
-                                    <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} value={mutualFund?.amount || ""} />
-                                </Form.Group>
-                                <Form.Group className="mb-3" >
-                                    <Form.Select aria-label="Investment Type" name="investmentType" onChange={handleChange}value={mutualFund?.investmentType || ""}>
-                                        <option>Investment Type</option>
-                                        <option value="LUMPSUMP">One Time</option>
-                                        <option value="SIP">SIP</option>
-                                    </Form.Select>
-                                </Form.Group>
-                                <Form.Group className="mb-3" >
-                                    <Form.Control name="dateOfSip" type="date" placeholder="SIP Date" onChange={handleChange} value={YYYYMMDD(mutualFund?.dateOfSip) || ""} />
-                                </Form.Group>
-                            </>
-                        }
+                <div className='common-modal'>
+                    <Modal.Header closeButton>
+                        <Modal.Title>ADD {key?.toUpperCase()}</Modal.Title>
+                    </Modal.Header>
+                    <Form onSubmit={handleSubmit}>
+                        <div className='modal-form'>
+                            <Modal.Body>
+                                {key === "mutualFunds" &&
+                                    <>
+                                        <Form.Group className="mb-3">
+                                            <Form.Control name="name" type="text" placeholder="Enter MF Name" onChange={handleChange} value={mutualFund?.name || ""} />
+                                        </Form.Group>
+                                        <Form.Group className="mb-3" >
+                                            <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} value={mutualFund?.amount || ""} />
+                                        </Form.Group>
+                                        <Form.Group className="mb-3" >
+                                            <Form.Select aria-label="Investment Type" name="investmentType" onChange={handleChange} value={mutualFund?.investmentType || ""}>
+                                                <option>Investment Type</option>
+                                                <option value="LUMPSUMP">One Time</option>
+                                                <option value="SIP">SIP</option>
+                                            </Form.Select>
+                                        </Form.Group>
+                                        <Form.Group className="mb-3" >
+                                            <Form.Control name="dateOfSip" type="date" placeholder="SIP Date" onChange={handleChange} value={YYYYMMDD(mutualFund?.dateOfSip) || ""} />
+                                        </Form.Group>
+                                    </>
+                                }
 
-                        {key === "stocks" &&
-                            <>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
-                                    <Form.Control name="name" type="text" placeholder="Enter Stocks Name" onChange={handleChange} value={stock?.name || ""} />
-                                </Form.Group>
-                                <Form.Group className="mb-3" controlId="formBasicPassword">
-                                    <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} value={stock?.amount || ""} />
-                                </Form.Group>
-                            </>
-                        }
+                                {key === "stocks" &&
+                                    <>
+                                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                                            <Form.Control name="name" type="text" placeholder="Enter Stocks Name" onChange={handleChange} value={stock?.name || ""} />
+                                        </Form.Group>
+                                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                                            <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} value={stock?.amount || ""} />
+                                        </Form.Group>
+                                    </>
+                                }
 
-                        {key === "bankAccounts" &&
-                            <>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
-                                    <Form.Control name="name" type="text" placeholder="Enter Bank Name" onChange={handleChange} value={bankAccount?.name || ""} />
-                                </Form.Group>
-                                <Form.Group className="mb-3" controlId="formBasicPassword">
-                                    <Form.Control name="accountHolderName" type="text" placeholder="Enter Account Holder Name" onChange={handleChange} value={bankAccount?.accountHolderName || ""} />
-                                </Form.Group>
-                                <Form.Group className="mb-3" controlId="formBasicPassword">
-                                    <Form.Control name="accountNumber" type="text" placeholder="Enter Account Number" onChange={handleChange} value={bankAccount?.accountNumber || ""} />
-                                </Form.Group>
-                                <Form.Group className="mb-3" controlId="formBasicPassword">
-                                    <Form.Control name="ifscCode" type="text" placeholder="Enter IFSC Code" onChange={handleChange} value={bankAccount?.ifscCode || ""} />
-                                </Form.Group>
-                                <Form.Group className="mb-3" controlId="formBasicPassword">
-                                    <Form.Control name="currentBalance" type="number" placeholder="Enter Current Balance" onChange={handleChange} value={bankAccount?.currentBalance || ""} />
-                                </Form.Group>
-                            </>
-                        }
+                                {key === "bankAccounts" &&
+                                    <>
+                                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                                            <Form.Control name="name" type="text" placeholder="Enter Bank Name" onChange={handleChange} value={bankAccount?.name || ""} />
+                                        </Form.Group>
+                                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                                            <Form.Control name="accountHolderName" type="text" placeholder="Enter Account Holder Name" onChange={handleChange} value={bankAccount?.accountHolderName || ""} />
+                                        </Form.Group>
+                                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                                            <Form.Control name="accountNumber" type="text" placeholder="Enter Account Number" onChange={handleChange} value={bankAccount?.accountNumber || ""} />
+                                        </Form.Group>
+                                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                                            <Form.Control name="ifscCode" type="text" placeholder="Enter IFSC Code" onChange={handleChange} value={bankAccount?.ifscCode || ""} />
+                                        </Form.Group>
+                                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                                            <Form.Control name="currentBalance" type="number" placeholder="Enter Current Balance" onChange={handleChange} value={bankAccount?.currentBalance || ""} />
+                                        </Form.Group>
+                                    </>
+                                }
 
-                        {key === "expenses" &&
-                            <>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
-                                    <Form.Control name="expenseType" type="text" placeholder="Enter Expense Type" onChange={handleChange} value={expense?.expenseType || ""} />
-                                </Form.Group>
-                                <Form.Group className="mb-3" controlId="formBasicPassword">
-                                    <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} value={expense?.amount || ""} />
-                                </Form.Group>
-                            </>
-                        }
+                                {key === "expenses" &&
+                                    <>
+                                        <Form.Group className="mb-3" >
+                                            <Form.Select aria-label="Expense Type" name="expenseType" onChange={handleChange} value={expense?.expenseType || ""}>
+                                                {allExpenseTypes && allExpenseTypes.map(singleExpenseType =>
+                                                (
+                                                    <option value={singleExpenseType.value}>{singleExpenseType.name}</option>
 
-                        {key === "loans" &&
-                            <>
+                                                ))}
+                                            </Form.Select>
+                                        </Form.Group>
+                                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                                            <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} value={expense?.amount || ""} />
+                                        </Form.Group>
+                                    </>
+                                }
 
-                                <Form.Group className="mb-3" controlId="formBasicPassword">
-                                    <Form.Control name="amount" type="number" placeholder="Enter Loan Amount" onChange={handleChange} value={loan?.amount || ""} />
-                                </Form.Group>
-                                <Form.Group className="mb-3" >
-                                    <Form.Select aria-label="Loan Type" name="loanType" onChange={handleChange} value={loan?.loanType || ""} >
-                                        <option>Loan Type</option>
-                                        <option value="given">Given</option>
-                                        <option value="taken">Taken</option>
-                                    </Form.Select>
-                                </Form.Group>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
-                                    <Form.Control name="remarks" type="text" placeholder="Enter Remarks" onChange={handleChange} value={loan?.remarks || ""} />
-                                </Form.Group>
-                            </>
-                        }
+                                {key === "loans" &&
+                                    <>
 
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
-                        </Button>
-                        <Button variant="success" type="submit">
-                            Submit
-                        </Button>
-                    </Modal.Footer>
-                    </div>
-                </Form>
+                                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                                            <Form.Control name="amount" type="number" placeholder="Enter Loan Amount" onChange={handleChange} value={loan?.amount || ""} />
+                                        </Form.Group>
+                                        <Form.Group className="mb-3" >
+                                            <Form.Select aria-label="Loan Type" name="loanType" onChange={handleChange} value={loan?.loanType || ""} >
+                                                <option>Loan Type</option>
+                                                <option value="given">Given</option>
+                                                <option value="taken">Taken</option>
+                                            </Form.Select>
+                                        </Form.Group>
+                                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                                            <Form.Control name="remarks" type="text" placeholder="Enter Remarks" onChange={handleChange} value={loan?.remarks || ""} />
+                                        </Form.Group>
+                                    </>
+                                }
+
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={handleClose}>
+                                    Close
+                                </Button>
+                                <Button variant="success" type="submit">
+                                    Submit
+                                </Button>
+                            </Modal.Footer>
+                        </div>
+                    </Form>
                 </div>
             </Modal>
 

@@ -27,11 +27,14 @@ const HomePage = () => {
     expenseType: "",
     amount: 0
   });
+  const [allExpenseTypes, setAllExpenseTypes] = useState([])
+
 
 
 
   useEffect(() => {
     loadPortfolio();
+    loadExpenseType();
   }, [])
 
 
@@ -89,6 +92,26 @@ const HomePage = () => {
     }
   }
 
+  const loadExpenseType = async (ptype) => {
+    try {
+      const axiosRes = await axios({
+        method: "GET",
+        headers: { 'x-access-token': localStorage.getItem('token') },
+        url: `${BASE_URL}/api/utils/expensetype`,
+        // data: { portfolioType: ptype }
+      });
+      console.log("loadExpenseType [SUCCESS]", axiosRes.data);
+      if (axiosRes.data.success) {
+        const { resData } = axiosRes.data;
+        setAllExpenseTypes(resData);
+      } else {
+
+      }
+    } catch (err) {
+      console.log("loadportfolio [ERROR]", err);
+      setLoading(false);
+    }
+  }
 
   return (
     <>
@@ -111,29 +134,35 @@ const HomePage = () => {
 
       <Modal show={show} onHide={handleClose}>
         <div className='common-modal'>
-        <Modal.Header closeButton>
-          <Modal.Title>Record Expense</Modal.Title>
-        </Modal.Header>
-        <Form onSubmit={handleSubmit}>
-          <div className='modal-form'>
-            <Modal.Body>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Control name="expenseType" type="text" placeholder="Enter Expense Type" onChange={handleChange} />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} />
-              </Form.Group>
-            </Modal.Body>
-          </div>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="success" type="submit">
-              Submit
-            </Button>
-          </Modal.Footer>
-        </Form>
+          <Modal.Header closeButton>
+            <Modal.Title>Record Expense</Modal.Title>
+          </Modal.Header>
+          <Form onSubmit={handleSubmit}>
+            <div className='modal-form'>
+              <Modal.Body>
+                <Form.Group className="mb-3" >
+                  <Form.Select aria-label="Expense Type" name="expenseType" onChange={handleChange} value={expense?.expenseType || ""}>
+                    {allExpenseTypes && allExpenseTypes.map(singleExpenseType =>
+                    (
+                      <option value={singleExpenseType.value}>{singleExpenseType.name}</option>
+
+                    ))}
+                  </Form.Select>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Control name="amount" type="number" placeholder="Enter Amount" onChange={handleChange} />
+                </Form.Group>
+              </Modal.Body>
+            </div>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button variant="success" type="submit">
+                Submit
+              </Button>
+            </Modal.Footer>
+          </Form>
         </div>
       </Modal>
 
