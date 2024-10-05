@@ -26,6 +26,14 @@ const PortfolioStats = (props) => {
         }
     }
 
+    const getClassNameLoan = (typeOfLoan) => {
+        if (typeOfLoan === "given") {
+            return "amount-green-h6";
+        } if (typeOfLoan === "taken") {
+            return "amount-red-h6";
+        }
+    }
+
 
 
     return (
@@ -89,7 +97,7 @@ const PortfolioStats = (props) => {
             <div className='summary-card'>
                 <div className='box-end'>
                     <div className=''>
-                        <h3 className='h3-title'>Liablities </h3>
+                        <h3 className='h3-title'>Loans </h3>
                     </div>
                     <div className=''>
                         <h6>As of {shortDate(new Date())}</h6>
@@ -106,7 +114,7 @@ const PortfolioStats = (props) => {
                                     {/* <h6>As of {shortDate(singleLoan.createdAt)}</h6> */}
                                 </div>
                                 <div className=''>
-                                    <h6>₹ {singleLoan.amount} </h6>
+                                    <h6 className={getClassNameLoan(singleLoan?.loanType)}>₹ {singleLoan?.amount} </h6>
                                     {/* <button className='btn'>Detail</button> */}
                                 </div>
                             </div>
@@ -116,13 +124,12 @@ const PortfolioStats = (props) => {
             </div>
 
 
-            <div className='summary-card'>
+            {/* <div className='summary-card'>
                 <h3 className='h3-title'>Expenses</h3>
-              
                 {
                     props?.userPortfolio?.userExpenses.map(singleExpense => (
                         <>
-                          <hr/>
+                            <hr />
                             <div className='box-end'>
                                 <div className=''>
                                     <p>{singleExpense.expenseType}</p>
@@ -130,13 +137,13 @@ const PortfolioStats = (props) => {
                                 </div>
                                 <div className=''>
                                     <h6>₹ {singleExpense.amount} </h6>
-                                    {/* <button className='btn'>Detail</button> */}
+                                    {/* <button className='btn'>Detail</button> *
                                 </div>
                             </div>
                         </>
                     ))
                 }
-            </div>
+            </div> */}
 
 
         </>
