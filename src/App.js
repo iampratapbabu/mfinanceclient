@@ -16,6 +16,7 @@ import { Toaster } from 'react-hot-toast';
 import { Econtext } from "./context/Econtext";
 import Settings from './pages/user/Settings';
 import AllPortfolio from './pages/user/AllPortfolio';
+import AskMfinance from './pages/user/AskMfinance';
 
 
 const App = () => {
@@ -62,6 +63,7 @@ const App = () => {
               <Route path="" element={<HomePage />} />
               <Route path="profile" element={<UserProfile />} />
               <Route path="all-portfolio" element={<AllPortfolio />} />
+              <Route path="ask-mfinance" element={<AskMfinance />} />
               <Route path="user-settings" element={<Settings />} />
             </Route>
             <Route path='*' element={<NotFound />} />

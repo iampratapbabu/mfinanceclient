@@ -90,7 +90,7 @@ const Header = () => {
                             <div className='links'>
                                 <Link to='/' onClick={handleClose}><FaHome />Home</Link>
                                 <Link to='/all-portfolio' onClick={handleClose}><FaRupeeSign />Portfolio</Link>
-                                <Link to='/investement-help' onClick={handleClose}><MdQueryStats />ask mFinance</Link>
+                                <Link to='/ask-mfinance' onClick={handleClose}><MdQueryStats />ask mFinance</Link>
                                 <Link to='/user-settings' onClick={handleClose}><IoSettingsSharp />Settings</Link>
                                 <Link to='/profile' onClick={handleClose}><FaUser />Profile</Link>
 

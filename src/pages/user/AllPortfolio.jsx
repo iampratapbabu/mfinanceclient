@@ -38,6 +38,7 @@ const AllPortfolio = () => {
         amount: 0,
         investmentType: "",
         dateOfSip: "",
+        dateOfInvestment:"",
     });
 
     const [stock, setStock] = useState({
@@ -62,6 +63,7 @@ const AllPortfolio = () => {
         amount: 0,
         loanType: "",
         remarks: "",
+        description: "",
     });
 
 
@@ -316,8 +318,13 @@ const AllPortfolio = () => {
                                                 <option value="SIP">SIP</option>
                                             </Form.Select>
                                         </Form.Group>
+                                        <Form.Label>SIP Date</Form.Label>
                                         <Form.Group className="mb-3" >
                                             <Form.Control name="dateOfSip" type="date" placeholder="SIP Date" onChange={handleChange} value={YYYYMMDD(mutualFund?.dateOfSip) || ""} />
+                                        </Form.Group>
+                                        <Form.Label>Investment Date</Form.Label>
+                                        <Form.Group className="mb-3" >
+                                            <Form.Control name="dateOfInvestment" type="date" placeholder="Investment Date" onChange={handleChange} value={YYYYMMDD(mutualFund?.dateOfInvestment) || ""} />
                                         </Form.Group>
                                     </>
                                 }
@@ -373,6 +380,9 @@ const AllPortfolio = () => {
                                 {key === "loans" &&
                                     <>
 
+                                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                                            <Form.Control name="remarks" type="text" placeholder="Enter Remarks" onChange={handleChange} value={loan?.remarks || ""} />
+                                        </Form.Group>
                                         <Form.Group className="mb-3" controlId="formBasicPassword">
                                             <Form.Control name="amount" type="number" placeholder="Enter Loan Amount" onChange={handleChange} value={loan?.amount || ""} />
                                         </Form.Group>
@@ -383,8 +393,9 @@ const AllPortfolio = () => {
                                                 <option value="taken">Taken</option>
                                             </Form.Select>
                                         </Form.Group>
+
                                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                                            <Form.Control name="remarks" type="text" placeholder="Enter Remarks" onChange={handleChange} value={loan?.remarks || ""} />
+                                            <Form.Control name="description" type="text" placeholder="Enter Description" onChange={handleChange} value={loan?.description || ""} />
                                         </Form.Group>
                                     </>
                                 }

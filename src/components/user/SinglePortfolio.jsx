@@ -75,6 +75,14 @@ const SinglePortfolio = ({ refProp, setPortfolio, removePortfolio, portfolio, po
                                                     <span>{ddMMYYYY(portfolio?.dateOfSip)}</span>
                                                 </div>
                                             </div>
+                                            <div className='row'>
+                                                <div className='col'>
+                                                    <h6>Investment Date:</h6>
+                                                </div>
+                                                <div className='col'>
+                                                    <span>{ddMMYYYY(portfolio?.dateOfInvestment)}</span>
+                                                </div>
+                                            </div>
                                             <br />
                                         </div>
 
@@ -263,6 +271,17 @@ const SinglePortfolio = ({ refProp, setPortfolio, removePortfolio, portfolio, po
 
                                     <div className='portfolio-detail'>
                                         <div className='row'>
+
+
+                                        <div className='row'>
+                                                <div className='col'>
+                                                    <h6>Description:</h6>
+                                                </div>
+                                                <div className='col'>
+                                                    <span>{portfolio?.description}</span>
+                                                </div>
+                                            </div>
+
                                             <div className='row'>
                                                 <div className='col'>
                                                     <h6>Loan Amount:</h6>
